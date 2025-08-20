@@ -10,6 +10,8 @@ from langchain_community.document_loaders import PyPDFLoader, TextLoader, Docx2t
 # Review all links, some of the loaders may require installation of extra packages
 
 # https://python.langchain.com/docs/integrations/document_loaders/
+
+
 def load_documents_from_dir(dir_path: Path) -> List[Document]:
     """Load documents from a directory."""
     documents = []
