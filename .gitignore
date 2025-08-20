@@ -1,0 +1,6 @@
+# Avoid uploading data
+# DEACTIVATE for now due to used some doc testing
+# data/
+
+# Avoid uploading environment variables
+.env
