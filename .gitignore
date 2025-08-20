@@ -1,5 +1,5 @@
 # Avoid uploading data
-# DEACTIVATE for now due to used some doc testing
+# DEACTIVATE for now due to used some docs for testing
 # data/
 
 # Avoid uploading environment variables
