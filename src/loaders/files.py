@@ -1,6 +1,6 @@
 from pathlib import Path
 from typing import List
-from langhcain_core.documents import Document
+from langchain_core.documents import Document
 from langchain_community.document_loaders import PyPDFLoader, TextLoader, Docx2txtLoader, UnstructuredPowerPointLoader
 
 
@@ -11,8 +11,45 @@ from langchain_community.document_loaders import PyPDFLoader, TextLoader, Docx2t
 
 # https://python.langchain.com/docs/integrations/document_loaders/
 
+def _get_loader_for_file(file_path: Path):
+    """Get the appropriate loader for a file based on its extension."""
+    ext = file_path.suffix.lower()
 
-def load_documents_from_dir(dir_path: Path) -> List[Document]:
+    # https://python.langchain.com/docs/how_to/document_loader_pdf/
+    if ext == ".pdf":
+        return PyPDFLoader(str(file_path))
+
+    elif ext in {".txt", ".md"}:
+        return TextLoader(str(file_path), encoding="utf-8")
+
+    # https://python.langchain.com/docs/integrations/document_loaders/microsoft_word/
+    elif ext == ".docx":
+        return Docx2txtLoader(str(file_path))
+
+    # https://python.langchain.com/docs/integrations/document_loaders/microsoft_powerpoint/
+    elif ext in {".pptx", ".ppt"}:
+        return UnstructuredPowerPointLoader(str(file_path), mode="elements")
+
+    else:
+        # Unknown file type
+        return None
+
+
+def _load_document(file_path: Path) -> List[Document]:
+    """Load document from a file path."""
+    try:
+        loader = _get_loader_for_file(file_path)
+        if loader is None:
+            return []
+
+        return loader.load()
+
+    except Exception as e:
+        print(f"[loader] Error loading {file_path.name}: {e}")
+        return []
+
+
+def _load_documents_from_dir(dir_path: Path) -> List[Document]:
     """Load documents from a directory."""
     documents = []
 
@@ -20,26 +57,9 @@ def load_documents_from_dir(dir_path: Path) -> List[Document]:
         if not file_path.is_file():
             continue
 
-        ext = file_path.suffix.lower()
-
         try:
-            # https://python.langchain.com/docs/how_to/document_loader_pdf/
-            if ext == ".pdf":
-                loader = PyPDFLoader(str(file_path))
-
-            elif ext in {".txt", ".md"}:
-                loader = TextLoader(str(file_path), encoding="utf-8")
-
-            # https://python.langchain.com/docs/integrations/document_loaders/microsoft_word/
-            elif ext == ".docx":
-                loader = Docx2txtLoader(str(file_path))
-
-            # https://python.langchain.com/docs/integrations/document_loaders/microsoft_powerpoint/
-            elif ext in {".pptx", ".ppt"}:
-                loader = UnstructuredPowerPointLoader(
-                    str(file_path), mode="elements")
-
-            else:
+            loader = _get_loader_for_file(file_path)
+            if loader is None:
                 # Unknown file type, skip
                 continue
 
@@ -48,4 +68,22 @@ def load_documents_from_dir(dir_path: Path) -> List[Document]:
         except Exception as e:
             print(f"[loader] Skipping {file_path.name}: {e}")
 
+    return documents
+
+
+def load_documents_path(path: Path) -> List[Document]:
+    """Load documents from a path, and check if a path is a directory or a file path."""
+    if path.is_dir():
+        return _load_documents_from_dir(path)
+    elif path.is_file():
+        return _load_document(path)
+    else:
+        return []
+
+
+def load_documents_from_paths(paths: List[Path]) -> List[Document]:
+    """Load documents from a list of paths."""
+    documents = []
+    for path in paths:
+        documents.extend(load_documents_path(path))
     return documents
