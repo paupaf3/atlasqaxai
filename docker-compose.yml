@@ -1,0 +1,23 @@
+services:
+  # Ollama server with NVIDIA GPU passthrough
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    pull_policy: always
+    ports:
+      - "11434:11434"                 # Ollama HTTP API
+    volumes:
+      - ollama-data:/root/.ollama     # persistent model storage
+      - ./scripts/entrypoint_dwn_llama3.sh:/entrypoint.sh # entry point to download model
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped
+    entrypoint: ["/usr/bin/bash", "/entrypoint.sh"]
+
+volumes:
+  ollama-data:
