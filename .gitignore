@@ -1,6 +1,8 @@
 # Avoid uploading data
-# DEACTIVATE for now due to used some docs for testing
-# data/
+data/
+
+# Avoid uploading indexed data
+index/
 
 # Avoid uploading environment variables
 .env
