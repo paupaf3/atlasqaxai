@@ -11,7 +11,7 @@ def run(question: str) -> None:
     llm_model = llm.get_llm(config.OLLAMA_MODEL)
     chain = pipeline.build_chain(vectorstore, llm_model, config.TOP_K)
 
-    if True:  # DEBUG
+    if False:  # DEBUG
         docs = vectorstore.similarity_search(question, k=config.TOP_K)
         print(f"[debug] retrieved {len(docs)} chunks")
         for d in docs[:3]:

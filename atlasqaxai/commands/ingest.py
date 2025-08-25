@@ -70,8 +70,7 @@ def run() -> None:
     manifest = hashing.load_manifest(paths.MANIFEST_PATH)
     new_chunks = []
 
-    if True:  # DEBUG
-        print(f"Chunks totales par el índice: {len(chunks)}")
+    print(f"Chunks totales par el índice: {len(chunks)}")
 
     # First, determine which files have changed
     changed_files = set()
