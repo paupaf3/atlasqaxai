@@ -14,7 +14,7 @@ def _empty_faiss(embeddings) -> FAISS:
 
 
 def load_or_create_faiss(persist_dir: Path, embeddings) -> FAISS:
-    faiss_path, pkl_path = persist_dir / "faiss.index", persist_dir / "faiss.pkl"
+    faiss_path, pkl_path = persist_dir / "index.faiss", persist_dir / "index.pkl"
     if faiss_path.exists() and pkl_path.exists():
         return FAISS.load_local(str(persist_dir), embeddings, allow_dangerous_deserialization=True)
     return _empty_faiss(embeddings)
@@ -28,6 +28,6 @@ def upsert_documents(vs: FAISS, docs: List[Document], persist_dir: Path) -> None
 
 
 def wipe_index(persist_dir: Path) -> None:
-    for p in [persist_dir / "faiss.index", persist_dir / "faiss.pkl", persist_dir / "manifest.json"]:
+    for p in [persist_dir / "index.faiss", persist_dir / "index.pkl", persist_dir / "manifest.json"]:
         if p.exists():
             p.unlink()

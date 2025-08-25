@@ -69,22 +69,31 @@ def run() -> None:
     vs = store.load_or_create_faiss(paths.PERSIST_DIR, embeds)
     manifest = hashing.load_manifest(paths.MANIFEST_PATH)
     new_chunks = []
-    seen = set()
 
+    if True:  # DEBUG
+        print(f"Chunks totales par el índice: {len(chunks)}")
+
+    # First, determine which files have changed
+    changed_files = set()
     for ch in chunks:
         src = ch.metadata.get("source", "unknown")
-        seen.add(src)
         # Only hash original files once (page chunks share same source name)
         # Use file path from doc metadata if available; fall back to DATA_DIR/src
         path = Path(paths.DATA_DIR) / src
         if not path.exists():  # for safety with loaders that embed full path
-            # skip incremental check if unknown
-            new_chunks.append(ch)
+            # skip incremental check if unknown - treat as changed
+            changed_files.add(src)
             continue
         h = hashing.file_sha256(path)
         if manifest["files"].get(src) != h:
-            new_chunks.append(ch)
+            changed_files.add(src)
             manifest["files"][src] = h
+
+    # Now add all chunks for changed files
+    for ch in chunks:
+        src = ch.metadata.get("source", "unknown")
+        if src in changed_files:
+            new_chunks.append(ch)
 
     store.upsert_documents(vs, new_chunks, paths.PERSIST_DIR)
     hashing.save_manifest(paths.MANIFEST_PATH, manifest)
