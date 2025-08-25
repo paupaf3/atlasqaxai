@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+
 DATA_DIR = Path(os.getenv("DATA_DIR"))
 DATA_DOCS_PATHS_TEXT_FILE = Path(os.getenv("DATA_DOCS_PATHS_TEXT_FILE"))
 DATA_WEBS_PATHS_TEXT_FILE = Path(os.getenv("DATA_WEBS_PATHS_TEXT_FILE"))
