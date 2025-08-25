@@ -11,6 +11,7 @@ langchain-ollama = "*"
 beautifulsoup4 = "*"
 pypdf = "*"
 faiss-cpu = "*"
+python-docx = "*"
 
 [dev-packages]
 
