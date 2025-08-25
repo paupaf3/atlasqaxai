@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 python-dotenv = "*"
+langchain = "*"
+langchain-community = "*"
+langchain-ollama = "*"
 
 [dev-packages]
 
