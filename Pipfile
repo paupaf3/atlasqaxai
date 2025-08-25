@@ -8,6 +8,9 @@ python-dotenv = "*"
 langchain = "*"
 langchain-community = "*"
 langchain-ollama = "*"
+beautifulsoup4 = "*"
+pypdf = "*"
+faiss-cpu = "*"
 
 [dev-packages]
 
