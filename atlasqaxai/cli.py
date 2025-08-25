@@ -56,9 +56,7 @@ def build_parser() -> argparse.ArgumentParser:
     return argument_parser
 
 
-if __name__ == "__main__":
-    load_dotenv()  # Load config from .env on start
-
+def run():
     parser = build_parser()
     args = parser.parse_args()
 
