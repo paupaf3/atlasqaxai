@@ -1,16 +1,26 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-# Start Ollama in the background.
-/bin/ollama serve &
-# Record Process ID.
+# Start the Ollama server in the background
+ollama serve >/tmp/ollama.log 2>&1 &
 pid=$!
 
-# Pause for Ollama to start.
-sleep 5
+# Ensure we forward signals to the server
+trap 'kill -TERM "$pid" 2>/dev/null || true' SIGINT SIGTERM
 
-echo "🔴 Retrieve LLAMA3.1 8B model..."
-ollama pull llama3.1:8b
+# Wait until the server is ready
+until ollama list >/dev/null 2>&1; do
+  echo "Waiting for Ollama to be ready..."
+  sleep 1
+done
+
+echo "🔴 Pulling llama3.1:8b ..."
+ollama list | grep -q '^llama3\.1:8b' || ollama pull llama3.1:8b
 echo "🟢 Done!"
 
-# Wait for Ollama process to finish.
-wait $pid
+echo "🔴 Pulling nomic-embed-text ..."
+ollama list | grep -q '^nomic-embed-text' || ollama pull nomic-embed-text
+echo "🟢 Done!"
+
+# Keep the server in the foreground of the container
+wait "$pid"
