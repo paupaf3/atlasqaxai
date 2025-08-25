@@ -1,7 +1,6 @@
 import argparse
-from dotenv import load_dotenv
 
-from commands import ingest, ask, wipe, rebuild
+from .commands import ingest, ask, wipe, rebuild
 
 
 def run_ingest(_) -> None:

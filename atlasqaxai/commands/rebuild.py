@@ -1,4 +1,4 @@
-from commands import ingest, wipe
+from . import ingest, wipe
 
 
 def run() -> None:

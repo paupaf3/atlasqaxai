@@ -1,5 +1,5 @@
-from utils import paths
-from vectorstore import store
+from ..utils import paths
+from ..vectorstore import store
 
 
 def run() -> None:

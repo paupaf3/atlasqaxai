@@ -1,6 +1,6 @@
 from typing import List
 from bs4 import SoupStrainer
-from langhcain_core.documents import Document
+from langchain_core.documents import Document
 from langchain_community.document_loaders import WebBaseLoader
 
 # https://python.langchain.com/docs/how_to/document_loader_web/

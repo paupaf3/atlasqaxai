@@ -2,10 +2,10 @@ from typing import List
 from pathlib import Path
 from langchain_core.documents import Document
 
-from loaders import files, webs
-from utils import paths, config
-from processing import splitter, hashing
-from vectorstore import store, embeddings
+from ..loaders import files, webs
+from ..utils import paths, config
+from ..processing import splitter, hashing
+from ..vectorstore import store, embeddings
 
 
 def _get_lines_text_file(file_path: Path) -> List[str]:
@@ -28,7 +28,7 @@ def _load_documents():
     # Process files/docs from DATA_DOCS_PATHS
     # Read DATA_DOCS_PATHS from txt file
     docs_paths = _get_lines_text_file(paths.DATA_DOCS_PATHS_TEXT_FILE)
-    docs_paths = files.load_documents_paths(
+    docs_paths = files.load_documents_from_paths(
         [Path(path) for path in docs_paths])
 
     if not docs_paths:
@@ -67,7 +67,6 @@ def run() -> None:
     embeds = embeddings.get_embeddings(
         config.EMBEDDINGS_BACKEND, config.EMBEDDINGS_MODEL)
     vs = store.load_or_create_faiss(paths.PERSIST_DIR, embeds)
-
     manifest = hashing.load_manifest(paths.MANIFEST_PATH)
     new_chunks = []
     seen = set()

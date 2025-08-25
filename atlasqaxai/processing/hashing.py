@@ -5,7 +5,7 @@ from pathlib import Path
 # (tiny local type to avoid pydantic)
 # Why “avoid Pydantic”?
 # For a simple JSON like {"files": {"doc.pdf": "abc123..."}}, that’s overkill.
-from entities.manifest import Manifest
+from ..entities.manifest import Manifest
 
 
 def file_sha256(path: Path) -> str:
