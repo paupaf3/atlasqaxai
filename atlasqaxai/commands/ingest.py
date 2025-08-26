@@ -6,6 +6,7 @@ from ..loaders import files, webs
 from ..utils import paths, config
 from ..processing import splitter, hashing
 from ..vectorstore import store, embeddings
+from ..rag import session
 
 
 def _get_lines_text_file(file_path: Path) -> List[str]:
@@ -96,4 +97,9 @@ def run() -> None:
 
     store.upsert_documents(vs, new_chunks, paths.PERSIST_DIR)
     hashing.save_manifest(paths.MANIFEST_PATH, manifest)
+
+    # Invalidate the session cache since the index has been updated
+    if new_chunks:
+        session.get_session().force_reload()
+
     print(f"→ Ingest complete. {len(new_chunks)} chunks added/updated.")
