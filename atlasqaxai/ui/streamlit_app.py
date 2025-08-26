@@ -34,7 +34,7 @@ def main():
     with st.sidebar:
         st.header("System Management")
 
-        if st.button("🔄 Rebuild Index", help="Rebuild the entire index from scratch"):
+        if st.button("🔄 Rebuild Index", help="Rebuild the entire index from scratch", use_container_width=True):
             with st.spinner("Rebuilding index..."):
                 try:
                     rebuild.run()
@@ -45,7 +45,7 @@ def main():
                 except Exception as e:
                     st.error(f"Error rebuilding index: {e}")
 
-        if st.button("📥 Ingest Documents", help="Index new/changed documents"):
+        if st.button("📥 Ingest Documents", help="Index new/changed documents", use_container_width=True):
             with st.spinner("Ingesting documents..."):
                 try:
                     ingest.run()
@@ -56,7 +56,7 @@ def main():
                 except Exception as e:
                     st.error(f"Error ingesting documents: {e}")
 
-        if st.button("🔍 Inspect Index", help="Inspect the current index"):
+        if st.button("🔍 Inspect Index", help="Inspect the current index", use_container_width=True):
             with st.spinner("Inspecting index..."):
                 try:
                     # Capture the output of inspect.run()
@@ -71,13 +71,13 @@ def main():
                 except Exception as e:
                     st.error(f"Error inspecting index: {e}")
 
-        if st.button("📓 Refresh Summary", help="Refresh the document summary in chat"):
+        if st.button("📓 Refresh Summary", help="Refresh the document summary in chat", use_container_width=True):
             # Clear chat and re-initialize with fresh summary
             st.session_state.messages = []
             initialize_chat_with_summary()
             st.success("Summary refreshed!")
 
-        if st.button("🗑️ Wipe Index", help="Delete the entire index"):
+        if st.button("🗑️ Wipe Index", help="Delete the entire index", use_container_width=True):
             if st.session_state.get('confirm_wipe', False):
                 try:
                     wipe.run()
@@ -129,7 +129,7 @@ def main():
                         {"role": "assistant", "content": error_msg})
 
     # Clear chat history button
-    if st.button("Clear Chat History"):
+    if st.button("Clear Chat History", use_container_width=True):
         st.session_state.messages = []
         initialize_chat_with_summary()  # Re-add the summary after clearing
         st.rerun()
