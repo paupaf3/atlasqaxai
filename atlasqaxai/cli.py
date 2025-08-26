@@ -1,6 +1,12 @@
 import argparse
+from streamlit.web import cli
 
 from .commands import ingest, ask, wipe, rebuild, inspect, summary
+
+
+def run_app(_) -> None:
+    print("Access Web App through http://localhost:8501")
+    cli.main_run(["atlasqaxai/ui/streamlit_app.py", "--server.port", "8501"])
 
 
 def run_inspect(_) -> None:
@@ -44,6 +50,10 @@ def build_parser() -> argparse.ArgumentParser:
         prog="atlasqaxai", description="AtlasQAX.ai is an intelligent Question Answering system that delivers accurate answers from multiple data sources.")
 
     sub = argument_parser.add_subparsers(dest="cmd")
+
+    parser_app = sub.add_parser(
+        "app", help="Execute the Streamlit web app")
+    parser_app.set_defaults(func=run_app)
 
     parser_ingest = sub.add_parser(
         "ingest", help="Index new/changed documents")
