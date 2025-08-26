@@ -1,124 +1,81 @@
-# Optimización del Sistema RAG - Session Management
+# RAG System Optimization - Session Management
 
-## Problema Inicial
+## Initial Problem
 
-El código original en `ask.py` era ineficiente porque en cada pregunta se estaba:
+The original code in `ask.py` was inefficient because for each question it was loading embeddings from scratch, loading the vectorstore from disk initializing the LLM model and building the RAG chain.
 
-1. **Cargando las embeddings** desde cero
-2. **Cargando el vectorstore** desde disco (índice FAISS)
-3. **Inicializando el modelo LLM** 
-4. **Construyendo la cadena RAG**
+This meant that each question had high latency and unnecessary resource usage.
 
-Esto significaba que cada pregunta tenía una latencia alta y uso innecesario de recursos.
+## Implemented Solution
 
-## Solución Implementada
+### 1. Session System with Intelligent Caching
 
-### 1. Sistema de Sesión con Caché Inteligente
+A new `RAGSession` class has been created in `atlasqaxai/rag/session.py` that:
 
-Se ha creado una nueva clase `RAGSession` en `atlasqaxai/rag/session.py` que:
+- **Keeps in memory** all loaded RAG components
+- **Automatically detects** when components need to be reloaded
+- **Invalidates the cache** when necessary
 
-- **Mantiene en memoria** todos los componentes RAG cargados
-- **Detecta automáticamente** cuando necesita recargar los componentes
-- **Invalida la caché** cuando es necesario
+### 2. Automatic Change Detection
 
-### 2. Detección Automática de Cambios
+The session detects changes in:
 
-La sesión detecta cambios en:
+- **Index files**: Monitors `index.faiss` and `index.pkl` by modification time
+- **Configuration**: Detects changes in environment variables (models, parameters)
+- **Component state**: Verifies if any component is missing
 
-- **Archivos del índice**: Monitorea `index.faiss` y `index.pkl` por tiempo de modificación
-- **Configuración**: Detecta cambios en variables de entorno (modelos, parámetros)
-- **Estado de componentes**: Verifica si algún componente está faltante
+### 3. Manual Invalidation
 
-### 3. Invalidación Manual
+Commands that modify the index now invalidate the session:
 
-Los comandos que modifican el índice ahora invalidan la sesión:
+- **`ingest.py`**: Invalidates after adding new documents
+- **`wipe.py`**: Invalidates after deleting the index
+- **`rebuild.py`**: Already uses `wipe` + `ingest`, so it invalidates automatically
 
-- **`ingest.py`**: Invalida después de añadir nuevos documentos
-- **`wipe.py`**: Invalida después de borrar el índice
-- **`rebuild.py`**: Ya usa `wipe` + `ingest`, por lo que se invalida automáticamente
+## Benefits
 
-## Beneficios
+### **Improved Performance**
+- **First question**: Initial loading (normal time)
+- **Subsequent questions**: Immediate use of cached components
+- **Significant reduction** in latency for consecutive questions
 
-### **Rendimiento Mejorado**
-- **Primera pregunta**: Carga inicial (tiempo normal)
-- **Preguntas subsecuentes**: Uso inmediato de componentes cacheados
-- **Reducción significativa** en latencia para preguntas consecutivas
+### **Automatic Change Detection**
+- No need to restart the application after indexing
+- Automatic reload when index changes are detected
+- Maintains data consistency
 
-### **Detección Automática de Cambios**
-- No requiere reiniciar la aplicación después de indexar
-- Recarga automática cuando detecta cambios en el índice
-- Mantiene consistencia de datos
+### **Flexibility**
+- Works with CLI and Streamlit interfaces
+- Manual invalidation available if needed
+- Detailed logging for debugging
 
-### **Flexibilidad**
-- Funciona con interfaz CLI y Streamlit
-- Invalidación manual disponible si es necesaria
-- Logging detallado para debugging
+### **Full Compatibility**
+- No changes required in existing UI code
+- Existing commands work the same as before
+- Backward-compatible API
 
-### **Compatibilidad Total**
-- No requiere cambios en el código existente de la UI
-- Los comandos existentes funcionan igual que antes
-- API backward-compatible
+## Usage
 
-## Uso
-
-### Automático (Recomendado)
+### Automatic (Recommended)
 ```python
-# En ask.py - ahora optimizado
+# In ask.py - now optimized
 from ..rag import session
 
 def run(question: str):
     rag_session = session.get_session()
-    chain = rag_session.get_chain()  # Caché automático
+    chain = rag_session.get_chain()  # Automatic caching
     response = chain.invoke(question)
     return response
 ```
 
-### Manual (Para casos especiales)
+### Manual (For special cases)
 ```python
 from atlasqaxai.rag import session
 
-# Forzar recarga si es necesario
+# Force reload if necessary
 session.get_session().force_reload()
 
-# Verificar estado
+# Check status
 status = session.get_session().get_status()
 print(status)
 ```
-
-## Flujo de Trabajo Optimizado
-
-1. **Primera pregunta**: Carga todos los componentes
-2. **Preguntas subsecuentes**: Uso directo del caché
-3. **Nuevo indexado**: Detección automática + recarga
-4. **Cambio de configuración**: Detección automática + recarga
-
-## Archivos Modificados
-
-- **`atlasqaxai/rag/session.py`** *(nuevo)*: Sistema de sesión
-- **`atlasqaxai/commands/ask.py`**: Usa la sesión
-- **`atlasqaxai/commands/ingest.py`**: Invalida después de indexar
-- **`atlasqaxai/commands/wipe.py`**: Invalida después de borrar
-- **`atlasqaxai/rag/__init__.py`**: Expone la sesión
-- **`test_session.py`** *(nuevo)*: Script de prueba
-
-## Testing
-
-Ejecutar el script de prueba:
-
-```bash
-cd /home/pagusti/git-repos/atlasqaxai
-python test_session.py
-```
-
-Este script verifica:
-- Carga inicial de componentes
-- Funcionamiento del caché
-- Invalidación manual
-- Estado de la sesión
-
-## Consideraciones Técnicas
-
-- **Thread-safe**: La implementación actual asume uso single-thread
-- **Memoria**: Los componentes permanecen en memoria (diseño intencional para performance)
-- **Detección de cambios**: Basada en timestamps de archivos y hash de configuración
-- **Logging**: Mensajes informativos para tracking de cargas/recargas
