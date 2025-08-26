@@ -129,7 +129,7 @@ def main():
                         {"role": "assistant", "content": error_msg})
 
     # Clear chat history button
-    if st.button("Clear Chat History", use_container_width=True):
+    if st.button("Clear Chat History"):
         st.session_state.messages = []
         initialize_chat_with_summary()  # Re-add the summary after clearing
         st.rerun()
