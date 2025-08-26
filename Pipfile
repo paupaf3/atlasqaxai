@@ -12,6 +12,7 @@ beautifulsoup4 = "*"
 pypdf = "*"
 faiss-cpu = "*"
 python-docx = "*"
+streamlit = "*"
 
 [dev-packages]
 
