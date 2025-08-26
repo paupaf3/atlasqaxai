@@ -1,8 +1,10 @@
 # Avoid uploading data
-data/
+data/ 
 
 # Avoid uploading indexed data
-index/
+index/ 
 
 # Avoid uploading environment variables
-.env
+.env 
+data/webs_paths.txt
+data/docs_paths.txt
