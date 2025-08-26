@@ -1,10 +1,14 @@
 import argparse
 
-from .commands import ingest, ask, wipe, rebuild, inspect
+from .commands import ingest, ask, wipe, rebuild, inspect, summary
 
 
 def run_inspect(_) -> None:
     inspect.run()
+
+
+def run_summary(_) -> None:
+    summary.run()
 
 
 def run_ingest(_) -> None:
@@ -54,6 +58,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     parser_inspect = sub.add_parser("inspect", help="Inspect the index")
     parser_inspect.set_defaults(func=run_inspect)
+
+    parser_summary = sub.add_parser("summary", help="Show index summary")
+    parser_summary.set_defaults(func=run_summary)
 
     parser_ask = sub.add_parser("ask", help="Ask a question")
     parser_ask.add_argument("question", nargs="*",
