@@ -27,8 +27,8 @@ def load_documents_from_webs(urls: List[str], user_agent: str = DEFAULT_UA) -> L
 
                 # Avoid loading unnecessary content like headers, footers, etc.
                 # TODO this could be an input param to control and adapat to different page structures
-                bs_kwargs={"parse_only": SoupStrainer(
-                    name=("article", "main"))}
+                # bs_kwargs={"parse_only": SoupStrainer(
+                #     name=("article", "main"))}
             )
             page_docs = loader.load()
 

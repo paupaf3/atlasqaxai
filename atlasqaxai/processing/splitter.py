@@ -19,8 +19,13 @@ def apply_metadata_defaults(chunks: List[Document]) -> List[Document]:
             "file_path") or d.metadata.get("path") or "unknown")
         if "page" not in d.metadata:
             d.metadata["page"] = d.metadata.get("page_label") or "N/A"
-        # keep only filename in source for pretty citations
+        # keep only filename in source for pretty citations for files, but preserve full URLs
         # REVIEW I think is a good option for a company to know where the answer comes from
-        src = Path(str(d.metadata["source"])).name
-        d.metadata["source"] = src
+        src_str = str(d.metadata["source"])
+        if src_str.startswith(("http://", "https://")):
+            # Keep full URL for web sources
+            d.metadata["source"] = src_str
+        else:
+            # Keep only filename for file sources
+            d.metadata["source"] = Path(src_str).name
     return chunks

@@ -41,9 +41,7 @@ def get_summary() -> str:
         ]
 
         for src, count in counts.most_common():
-            # Clean up the source path for display
-            display_name = src.split('/')[-1] if '/' in src else src
-            summary_lines.append(f"• {display_name}: {count} chunks")
+            summary_lines.append(f"\n• {src}")
 
         summary_lines.extend([
             "",
