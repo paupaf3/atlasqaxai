@@ -7,7 +7,7 @@ By combining QA, X (Explainability), and AI, AtlasQAX.ai aims to become a data c
 ## Key Features
 - **Natural Language QA** → Ask questions in plain language.  
 - **Explainable AI** → Get not only answers, but also transparent reasoning.  
-- **Multi-source Integration** → From unstructured documents to structured data platforms.  
+- **Multi-source Integration** → From unstructured documents, web pages and structured data platforms.  
 - **Scalable Design** → Flexible architecture to grow with your data needs.  
 
 ## Vision
@@ -54,7 +54,7 @@ AtlasQAX.ai combines *QA*, *X (Explainability)*, and *AI* to build a **data comp
 ---
 
 ## Notes
-- **Local-only by default:** AtlasQAX.ai runs fully offline using Ollama for both LLM and (optionally) embeddings.
+- **Local-only by default:** AtlasQAX.ai runs fully offline using Ollama for both LLM and embeddings.
 <!-- - **Swap components easily:** You can switch embeddings (Ollama ↔︎ Sentence-Transformers) or vector stores (FAISS ↔︎ others) with minimal code changes. -->
 <!-- - **Incremental ingestion:** The structure supports hashing & manifests so you only re-embed changed files. -->
 
