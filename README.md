@@ -9,9 +9,60 @@ By combining QA, X (Explainability), and AI, AtlasQAX.ai aims to become a data c
 - **Explainable AI** → Get not only answers, but also transparent reasoning.  
 - **Multi-source Integration** → From unstructured documents, web pages and structured data platforms.  
 - **Scalable Design** → Flexible architecture to grow with your data needs.  
+- **Multiple Interfaces** → Choose between CLI and web interface (Streamlit).
+
+## Usage
+
+### Web Interface (Streamlit)
+For a user-friendly web interface:
+```bash
+#Through the main application
+python -m atlasqaxai streamlit
+```
+
+The web interface provides:
+- Interactive chat interface for asking questions
+- System management tools (ingest, rebuild, inspect, summary, wipe index)
+- Real-time responses with chat history
+- Visual feedback and error handling
+
+### Command Line Interface (CLI)
+For traditional command-line usage:
+```bash
+# Interactive Q&A mode (default)
+python -m atlasqaxai
+
+# Ask a single question
+python -m atlasqaxai ask "What is the main topic of the documents?"
+
+# System management commands
+python -m atlasqaxai ingest     # Index new/changed documents
+python -m atlasqaxai rebuild    # Rebuild entire index
+python -m atlasqaxai inspect    # Inspect current index (detailed)
+python -m atlasqaxai summary    # Show documents summary (user-friendly)
+python -m atlasqaxai wipe       # Delete index
+```  
 
 ## Vision
 AtlasQAX.ai combines *QA*, *X (Explainability)*, and *AI* to build a **data companion** you can trust, an agent that not only answers, but also helps you **understand and interpret** the information behind each response.
+
+---
+## Available Commands
+
+### Data Management
+- **`ingest`** - Index new or changed documents from your `data/files/` directory
+- **`rebuild`** - Completely rebuild the index from scratch (useful after configuration changes)
+- **`wipe`** - Delete the entire index (requires confirmation)
+
+### Information & Inspection
+- **`summary`** - Show a user-friendly summary of documents in the index with chunk counts
+- **`inspect`** - Display detailed technical information about the index structure
+
+### Question Answering
+- **`ask`** - Ask questions about your documents (interactive mode by default)
+
+### Web Interface
+- **`app`** - Launch the Streamlit web interface
 
 ---
 
@@ -50,6 +101,10 @@ AtlasQAX.ai combines *QA*, *X (Explainability)*, and *AI* to build a **data comp
 ### Configuration & Utilities
 - **python-dotenv** — Loads settings from `.env` (e.g., model names, chunk sizes) to keep code clean and configurable.  
   PyPI: [python-dotenv](https://pypi.org/project/python-dotenv/)
+
+### Web Interface
+- **Streamlit** — Modern web framework for creating interactive data applications with Python.  
+  Site: [streamlit.io](https://streamlit.io) · PyPI: [streamlit](https://pypi.org/project/streamlit/)
 
 ---
 
