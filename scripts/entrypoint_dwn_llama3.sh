@@ -18,8 +18,12 @@ echo "🔴 Pulling llama3.1:8b ..."
 ollama list | grep -q '^llama3\.1:8b' || ollama pull llama3.1:8b
 echo "🟢 Done!"
 
-echo "🔴 Pulling nomic-embed-text ..."
-ollama list | grep -q '^nomic-embed-text' || ollama pull nomic-embed-text
+# echo "🔴 Pulling nomic-embed-text ..."
+# ollama list | grep -q '^nomic-embed-text' || ollama pull nomic-embed-text
+# echo "🟢 Done!"
+
+echo "🔴 Pulling bge-m3 ..."
+ollama list | grep -q '^bge-m3' || ollama pull bge-m3
 echo "🟢 Done!"
 
 # Keep the server in the foreground of the container
