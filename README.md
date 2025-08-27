@@ -108,8 +108,22 @@ AtlasQAX.ai combines *QA*, *X (Explainability)*, and *AI* to build a **data comp
 
 ---
 
+## System Requirements
+
+### System Dependencies (not pip packages)
+Before installing Python dependencies, make sure to install these system packages:
+
+```bash
+sudo apt-get update
+sudo apt-get install -y libmagic-dev poppler-utils tesseract-ocr libreoffice
+```
+
+**What these packages provide:**
+- **`libmagic-dev`** - File type detection library
+- **`poppler-utils`** - PDF processing utilities for better PDF parsing
+- **`libreoffice`** - Office document processing capabilities
+
 ## Notes
 - **Local-only by default:** AtlasQAX.ai runs fully offline using Ollama for both LLM and embeddings.
 <!-- - **Swap components easily:** You can switch embeddings (Ollama ↔︎ Sentence-Transformers) or vector stores (FAISS ↔︎ others) with minimal code changes. -->
 <!-- - **Incremental ingestion:** The structure supports hashing & manifests so you only re-embed changed files. -->
-

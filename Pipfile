@@ -9,10 +9,11 @@ langchain = "*"
 langchain-community = "*"
 langchain-ollama = "*"
 beautifulsoup4 = "*"
-pypdf = "*"
 faiss-cpu = "*"
 python-docx = "*"
 streamlit = "*"
+unstructured = "*"
+pdfplumber = "*"
 
 [dev-packages]
 
