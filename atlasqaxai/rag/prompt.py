@@ -1,14 +1,17 @@
 from langchain_core.prompts import ChatPromptTemplate
 from pathlib import Path
+from ..utils import config
 
 
 # Read system prompt from markdown file
-SYSTEM = (Path(__file__).parent / "system_prompt.md").read_text().strip()
+SYSTEM = (Path(__file__).parent.parent / "prompts" /
+          config.PROMPTS / "system_prompt.md").read_text().strip()
 
-USER_TPL = "Question: {question}\n\nCONTEXT:\n{context}\n"
+USER = (Path(__file__).parent.parent / "prompts" /
+        config.PROMPTS / "user_prompt.md").read_text().strip()
 
 PROMPT = ChatPromptTemplate.from_messages(
-    [("system", SYSTEM), ("user", USER_TPL)])
+    [("system", SYSTEM), ("user", USER)])
 
 
 def format_docs(docs):
