@@ -115,7 +115,7 @@ Before installing Python dependencies, make sure to install these system package
 
 ```bash
 sudo apt-get update
-sudo apt-get install -y libmagic-dev poppler-utils tesseract-ocr libreoffice
+sudo apt-get install -y libmagic-dev poppler-utils tesseract-ocr libreoffice tesseract-ocr-spa tesseract-ocr-cat
 ```
 
 **What these packages provide:**
