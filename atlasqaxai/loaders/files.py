@@ -1,8 +1,7 @@
 from pathlib import Path
 from typing import List
 from langchain_core.documents import Document
-from langchain_community.document_loaders import PyPDFLoader, TextLoader, Docx2txtLoader, UnstructuredPowerPointLoader
-
+from langchain_community.document_loaders import TextLoader, Docx2txtLoader, UnstructuredPowerPointLoader, UnstructuredPDFLoader
 
 # TODO from docs, we will only load text, so maybe with should consider
 # TODO improving this with some image-to-text processing, or file-relation-text storing
@@ -11,13 +10,32 @@ from langchain_community.document_loaders import PyPDFLoader, TextLoader, Docx2t
 
 # https://python.langchain.com/docs/integrations/document_loaders/
 
+
+def _extract_pdf_with_tables(file_path: Path) -> List[Document]:
+    """Extract PDF content with better table handling."""
+    documents = []
+
+    # Unstructured pdf
+    try:
+        loader = UnstructuredPDFLoader(
+            str(file_path),
+            mode="elements",
+            strategy="hi_res"  # Better for tables
+        )
+        return loader.load()
+    except Exception as e:
+        print(
+            f"[loader] UnstructuredPDFLoader failed for {file_path.name}: {e}")
+
+
 def _get_loader_for_file(file_path: Path):
     """Get the appropriate loader for a file based on its extension."""
     ext = file_path.suffix.lower()
 
     # https://python.langchain.com/docs/how_to/document_loader_pdf/
     if ext == ".pdf":
-        return PyPDFLoader(str(file_path))
+        # Use custom table-aware PDF extraction
+        return None  # Will be handled by _extract_pdf_with_tables
 
     elif ext in {".txt", ".md"}:
         return TextLoader(str(file_path), encoding="utf-8")
@@ -38,6 +56,11 @@ def _get_loader_for_file(file_path: Path):
 def _load_document(file_path: Path) -> List[Document]:
     """Load document from a file path."""
     try:
+        # Special handling for PDFs with table extraction
+        if file_path.suffix.lower() == ".pdf":
+            return _extract_pdf_with_tables(file_path)
+
+        # For other file types, use standard loaders
         loader = _get_loader_for_file(file_path)
         if loader is None:
             return []
@@ -58,6 +81,12 @@ def _load_documents_from_dir(dir_path: Path) -> List[Document]:
             continue
 
         try:
+            # Special handling for PDFs with table extraction
+            if file_path.suffix.lower() == ".pdf":
+                documents.extend(_extract_pdf_with_tables(file_path))
+                continue
+
+            # For other file types, use standard loaders
             loader = _get_loader_for_file(file_path)
             if loader is None:
                 # Unknown file type, skip

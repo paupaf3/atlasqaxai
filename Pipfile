@@ -12,8 +12,7 @@ beautifulsoup4 = "*"
 faiss-cpu = "*"
 python-docx = "*"
 streamlit = "*"
-unstructured = "*"
-pdfplumber = "*"
+unstructured = {extras = ["pdf"], version = "*"}
 
 [dev-packages]
 
