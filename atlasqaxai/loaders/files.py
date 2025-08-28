@@ -1,7 +1,8 @@
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 from langchain_core.documents import Document
 from langchain_community.document_loaders import TextLoader, Docx2txtLoader, UnstructuredPowerPointLoader, UnstructuredPDFLoader
+import re
 
 # TODO from docs, we will only load text, so maybe with should consider
 # TODO improving this with some image-to-text processing, or file-relation-text storing
@@ -11,16 +12,56 @@ from langchain_community.document_loaders import TextLoader, Docx2txtLoader, Uns
 # https://python.langchain.com/docs/integrations/document_loaders/
 
 
+def _extract_language_from_filename(file_path: Path) -> str:
+    """Extract language code from filename pattern like 'nombre ES.pdf', 'nombre CA.docx', etc.
+
+    Examples:
+        'MANUAL HUESO 2025 ES.pdf' -> 'es'
+        'documento CA.docx' -> 'ca' 
+        'report EN.pptx' -> 'en'
+        'archivo.pdf' -> 'es' (default)
+
+    Returns:
+        Language code (es, ca, en) or 'es' as default if no pattern found.
+    """
+    # Get filename without extension
+    filename_without_ext = file_path.stem
+
+    # Look for language pattern at the end of filename (space + 2 letters)
+    # Pattern matches: " ES", " CA", " EN" at the end of filename
+    pattern = r'\s+(ES|CA|EN)$'
+    match = re.search(pattern, filename_without_ext, re.IGNORECASE)
+
+    if match:
+        lang_code = match.group(1).upper()
+        # Map to standard language codes
+        lang_mapping = {
+            'ES': 'es',
+            'CA': 'ca',
+            'EN': 'en'
+        }
+        return lang_mapping.get(lang_code, 'es')
+
+    # Default to Spanish if no language pattern found
+    return 'es'
+
+
 def _extract_pdf_with_tables(file_path: Path) -> List[Document]:
     """Extract PDF content with better table handling."""
     documents = []
 
     # Unstructured pdf
     try:
+        # Detect language from filename
+        language = _extract_language_from_filename(file_path)
+        print(
+            f"[loader] Detected language '{language}' for file: {file_path.name}")
+
         loader = UnstructuredPDFLoader(
             str(file_path),
             mode="elements",
-            strategy="hi_res"  # Better for tables
+            strategy="hi_res",  # Better for tables
+            languages=[language]  # Specify language based on filename
         )
         return loader.load()
     except Exception as e:
@@ -46,7 +87,11 @@ def _get_loader_for_file(file_path: Path):
 
     # https://python.langchain.com/docs/integrations/document_loaders/microsoft_powerpoint/
     elif ext in {".pptx", ".ppt"}:
-        return UnstructuredPowerPointLoader(str(file_path), mode="elements")
+        # Detect language from filename
+        language = _extract_language_from_filename(file_path)
+        print(
+            f"[loader] Detected language '{language}' for file: {file_path.name}")
+        return UnstructuredPowerPointLoader(str(file_path), mode="elements", languages=[language])
 
     else:
         # Unknown file type
