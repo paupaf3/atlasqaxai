@@ -4,11 +4,6 @@ from langchain_core.documents import Document
 from langchain_community.document_loaders import TextLoader, Docx2txtLoader, UnstructuredPowerPointLoader, UnstructuredPDFLoader
 import re
 
-# TODO from docs, we will only load text, so maybe with should consider
-# TODO improving this with some image-to-text processing, or file-relation-text storing
-
-# Review all links, some of the loaders may require installation of extra packages
-
 # https://python.langchain.com/docs/integrations/document_loaders/
 
 
