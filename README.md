@@ -4,6 +4,24 @@ Starting with document-based knowledge retrieval, it is designed to scale toward
 
 By combining QA, X (Explainability), and AI, AtlasQAX.ai aims to become a data companion that not only answers but also helps users trust and interpret the information it provides.
 
+---
+## Project Status
+AtlasQAX.ai is currently in an early development phase.
+The basic functionality—document ingestion and natural language Q&A—is already working, but many planned features are still in progress.
+
+A lot of improvements can be made in areas such as document ingestion, embeddings generation, and retrieval quality, which are active focus points for future updates.
+
+Over the coming iterations, the project will expand to include:
+- More robust multi-language support
+- Enhanced explainability and audit logging
+- Database and API connectors
+- Improved interfaces (streamlined web UI, better CLI experience)
+- Performance optimizations for larger document sets
+- Working and tuning the 
+
+This repository is actively evolving, and the roadmap involves significant improvements in both functionality and usability. Contributions, feedback, and ideas are welcome!
+
+---
 ## Key Features
 - **Natural Language QA** → Ask questions in plain language.  
 - **Explainable AI** → Get not only answers, but also transparent reasoning.  
@@ -11,8 +29,8 @@ By combining QA, X (Explainability), and AI, AtlasQAX.ai aims to become a data c
 - **Scalable Design** → Flexible architecture to grow with your data needs.  
 - **Multiple Interfaces** → Choose between CLI and web interface (Streamlit).
 
+---
 ## Usage
-
 ### Web Interface (Streamlit)
 For a user-friendly web interface:
 ```bash
@@ -42,13 +60,12 @@ python -m atlasqaxai inspect    # Inspect current index (detailed)
 python -m atlasqaxai summary    # Show documents summary (user-friendly)
 python -m atlasqaxai wipe       # Delete index
 ```  
-
+---
 ## Vision
 AtlasQAX.ai combines *QA*, *X (Explainability)*, and *AI* to build a **data companion** you can trust, an agent that not only answers, but also helps you **understand and interpret** the information behind each response.
 
 ---
 ## Available Commands
-
 ### Data Management
 - **`ingest`** - Index new or changed documents from your `data/files/` directory
 - **`rebuild`** - Completely rebuild the index from scratch (useful after configuration changes)
@@ -109,7 +126,6 @@ AtlasQAX.ai combines *QA*, *X (Explainability)*, and *AI* to build a **data comp
 ---
 
 ## System Requirements
-
 ### System Dependencies (not pip packages)
 Before installing Python dependencies, make sure to install these system packages:
 
