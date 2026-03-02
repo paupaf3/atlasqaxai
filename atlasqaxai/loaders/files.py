@@ -3,8 +3,14 @@ from typing import List, Optional
 from langchain_core.documents import Document
 from langchain_community.document_loaders import TextLoader, Docx2txtLoader, UnstructuredPowerPointLoader, UnstructuredPDFLoader
 import re
+import logging
+import time
 
 # https://python.langchain.com/docs/integrations/document_loaders/
+
+# Reduce noisy PDF parser warnings (e.g. FontBBox warnings) during ingestion.
+logging.getLogger("pdfminer").setLevel(logging.ERROR)
+logging.getLogger("pypdf").setLevel(logging.ERROR)
 
 
 def _extract_language_from_filename(file_path: Path) -> str:
@@ -43,25 +49,43 @@ def _extract_language_from_filename(file_path: Path) -> str:
 
 def _extract_pdf_with_tables(file_path: Path) -> List[Document]:
     """Extract PDF content with better table handling."""
-    documents = []
-
-    # Unstructured pdf
+    # Prefer faster extraction first to avoid long stalls on complex PDFs.
     try:
         # Detect language from filename
         language = _extract_language_from_filename(file_path)
-        print(
-            f"[loader] Detected language '{language}' for file: {file_path.name}")
+        print(f"[loader] Processing PDF: {file_path.name}")
+        print(f"[loader] Detected language '{language}' for file: {file_path.name}")
+        start = time.time()
 
         loader = UnstructuredPDFLoader(
             str(file_path),
             mode="elements",
-            strategy="hi_res",  # Better for tables
-            languages=[language]  # Specify language based on filename
+            strategy="fast",
+            languages=[language]
         )
-        return loader.load()
-    except Exception as e:
-        print(
-            f"[loader] UnstructuredPDFLoader failed for {file_path.name}: {e}")
+        docs = loader.load()
+        elapsed = time.time() - start
+        print(f"[loader] PDF extracted (fast): {file_path.name} ({len(docs)} elements, {elapsed:.1f}s)")
+        return docs
+    except Exception as fast_error:
+        print(f"[loader] fast extraction failed for {file_path.name}: {fast_error}")
+
+    # Fallback to hi_res when fast strategy fails.
+    try:
+        start = time.time()
+        loader = UnstructuredPDFLoader(
+            str(file_path),
+            mode="elements",
+            strategy="hi_res",
+            languages=[language],
+        )
+        docs = loader.load()
+        elapsed = time.time() - start
+        print(f"[loader] PDF extracted (hi_res): {file_path.name} ({len(docs)} elements, {elapsed:.1f}s)")
+        return docs
+    except Exception as hi_res_error:
+        print(f"[loader] hi_res extraction failed for {file_path.name}: {hi_res_error}")
+        return []
 
 
 def _get_loader_for_file(file_path: Path):

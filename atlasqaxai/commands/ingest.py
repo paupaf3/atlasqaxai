@@ -65,6 +65,11 @@ def run() -> None:
     chunks = splitter.apply_metadata_defaults(chunks)
 
     # Embeddings
+    if not config.EMBEDDINGS_BACKEND or not config.EMBEDDINGS_MODEL:
+        raise ValueError(
+            "Missing EMBEDDINGS_BACKEND or EMBEDDINGS_MODEL in environment. Check your .env file."
+        )
+
     embeds = embeddings.get_embeddings(
         config.EMBEDDINGS_BACKEND, config.EMBEDDINGS_MODEL)
     vs = store.load_or_create_faiss(paths.PERSIST_DIR, embeds)
@@ -75,8 +80,10 @@ def run() -> None:
 
     # First, determine which files have changed
     changed_files = set()
-    for ch in chunks:
-        src = ch.metadata.get("source", "unknown")
+    unique_sources = {ch.metadata.get("source", "unknown") for ch in chunks}
+    print(f"[ingest] Unique sources to check: {len(unique_sources)}")
+
+    for src in unique_sources:
         # Only hash original files once (page chunks share same source name)
         # Use file path from doc metadata if available; fall back to DATA_DIR/src
         path = Path(paths.DATA_DIR) / src
@@ -95,8 +102,12 @@ def run() -> None:
         if src in changed_files:
             new_chunks.append(ch)
 
+    print(f"[ingest] New/updated chunks to write: {len(new_chunks)}")
+    print("[ingest] Writing vectors to FAISS index...")
     store.upsert_documents(vs, new_chunks, paths.PERSIST_DIR)
+    print("[ingest] Saving manifest...")
     hashing.save_manifest(paths.MANIFEST_PATH, manifest)
+    print("[ingest] Manifest saved.")
 
     # Invalidate the session cache since the index has been updated
     if new_chunks:

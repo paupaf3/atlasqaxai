@@ -17,7 +17,7 @@ Over the coming iterations, the project will expand to include:
 - Database and API connectors
 - Improved interfaces (streamlined web UI, better CLI experience)
 - Performance optimizations for larger document sets
-- Working and tuning the 
+- Better model/rag tuning workflows
 
 This repository is actively evolving, and the roadmap involves significant improvements in both functionality and usability. Contributions, feedback, and ideas are welcome!
 
@@ -30,36 +30,114 @@ This repository is actively evolving, and the roadmap involves significant impro
 - **Multiple Interfaces** → Choose between CLI and web interface (Streamlit).
 
 ---
-## Usage
-### Web Interface (Streamlit)
-For a user-friendly web interface:
+## Execution Guide
+
+AtlasQAX.ai runs as a Python app + FAISS index, and **requires an Ollama server** for the LLM and (by default) embeddings.
+
+You can run Ollama in two ways:
+- **Option A (native)**: install and run Ollama directly on your host machine.
+- **Option B (Docker)**: run Ollama via `docker-compose.yml` (GPU-oriented setup).
+
+### 1) Prerequisites
+
+#### Python
+- Python **3.12** (as declared in `Pipfile`)
+
+#### System packages (Linux)
 ```bash
-#Through the main application
-python -m atlasqaxai streamlit
+sudo apt-get update
+sudo apt-get install -y libmagic-dev poppler-utils tesseract-ocr libreoffice tesseract-ocr-spa tesseract-ocr-cat
 ```
 
-The web interface provides:
-- Interactive chat interface for asking questions
-- System management tools (ingest, rebuild, inspect, summary, wipe index)
-- Real-time responses with chat history
-- Visual feedback and error handling
+#### Python dependencies
+From the project root:
+```bash
+pip install -r requirements.txt
+```
+or
+```bash
+pipenv install
+```
 
-### Command Line Interface (CLI)
-For traditional command-line usage:
+### 2) Configure environment
+
+Create your `.env` from the template:
+```bash
+cp .env.example .env
+```
+
+Default `.env.example` already points to:
+- `OLLAMA_MODEL=llama3.1:8b`
+- `EMBEDDINGS_BACKEND=ollama`
+- `EMBEDDINGS_MODEL=bge-m3`
+
+### 3) Start Ollama (required)
+
+#### Option A — Native Ollama (no Docker)
+Install Ollama and start server:
+```bash
+ollama serve
+```
+In another terminal, pull models used by default config:
+```bash
+ollama pull llama3.1:8b
+ollama pull bge-m3
+```
+
+#### Option B — Docker Ollama
+The provided `docker-compose.yml` starts an Ollama container and auto-pulls `llama3.1:8b` and `bge-m3`.
+```bash
+docker compose up -d
+docker logs -f ollama
+```
+
+Stop it with:
+```bash
+docker compose down
+```
+
+> Note: current compose is configured with NVIDIA GPU reservation. If you don't have NVIDIA container runtime configured, use native Ollama or adjust compose accordingly.
+
+### 4) Ingest documents
+
+Add files to `data/files/` (or set paths in `data/docs_paths.txt` / URLs in `data/webs_paths.txt`), then run:
+```bash
+python -m atlasqaxai ingest
+```
+
+### 5) Run AtlasQAX.ai
+
+#### CLI
 ```bash
 # Interactive Q&A mode (default)
 python -m atlasqaxai
 
-# Ask a single question
+# One-shot question
 python -m atlasqaxai ask "What is the main topic of the documents?"
 
-# System management commands
-python -m atlasqaxai ingest     # Index new/changed documents
-python -m atlasqaxai rebuild    # Rebuild entire index
-python -m atlasqaxai inspect    # Inspect current index (detailed)
-python -m atlasqaxai summary    # Show documents summary (user-friendly)
-python -m atlasqaxai wipe       # Delete index
-```  
+# Management commands
+python -m atlasqaxai summary
+python -m atlasqaxai inspect
+python -m atlasqaxai rebuild
+python -m atlasqaxai wipe
+```
+
+#### Web app (Streamlit)
+```bash
+python -m atlasqaxai app
+```
+Then open: `http://localhost:8501`
+
+### 6) Quick health checks
+
+- Ollama reachable: `ollama list` (or `docker logs -f ollama`)
+- Index created: `index/index.faiss` and `index/index.pkl`
+- Summary available: `python -m atlasqaxai summary`
+
+### Important runtime note
+
+Run commands from the **repository root** so paths like `atlasqaxai/ui/streamlit_app.py` and relative data/index paths resolve correctly.
+
 ---
 ## Vision
 AtlasQAX.ai combines *QA*, *X (Explainability)*, and *AI* to build a **data companion** you can trust, an agent that not only answers, but also helps you **understand and interpret** the information behind each response.
@@ -125,21 +203,8 @@ AtlasQAX.ai combines *QA*, *X (Explainability)*, and *AI* to build a **data comp
 
 ---
 
-## System Requirements
-### System Dependencies (not pip packages)
-Before installing Python dependencies, make sure to install these system packages:
-
-```bash
-sudo apt-get update
-sudo apt-get install -y libmagic-dev poppler-utils tesseract-ocr libreoffice tesseract-ocr-spa tesseract-ocr-cat
-```
-
-**What these packages provide:**
-- **`libmagic-dev`** - File type detection library
-- **`poppler-utils`** - PDF processing utilities for better PDF parsing
-- **`libreoffice`** - Office document processing capabilities
-
 ## Notes
-- **Local-only by default:** AtlasQAX.ai runs fully offline using Ollama for both LLM and embeddings.
+- **Ollama is mandatory** for the current default setup (`ChatOllama` + `OllamaEmbeddings`).
+- **Local-only by default:** AtlasQAX.ai can run fully offline once models are pulled.
 <!-- - **Swap components easily:** You can switch embeddings (Ollama ↔︎ Sentence-Transformers) or vector stores (FAISS ↔︎ others) with minimal code changes. -->
 <!-- - **Incremental ingestion:** The structure supports hashing & manifests so you only re-embed changed files. -->

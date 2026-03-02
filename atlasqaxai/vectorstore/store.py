@@ -1,6 +1,7 @@
 import faiss
+import time
 from pathlib import Path
-from typing import List
+from typing import List, Tuple
 from langchain_core.documents import Document
 from langchain_community.vectorstores import FAISS
 from langchain_community.docstore import InMemoryDocstore
@@ -20,11 +21,72 @@ def load_or_create_faiss(persist_dir: Path, embeddings) -> FAISS:
     return _empty_faiss(embeddings)
 
 
-def upsert_documents(vs: FAISS, docs: List[Document], persist_dir: Path) -> None:
+def _sanitize_documents(docs: List[Document]) -> Tuple[List[Document], int]:
+    sanitized_docs: List[Document] = []
+    skipped_empty = 0
+
+    for doc in docs:
+        content = (doc.page_content or "").replace("\x00", " ").strip()
+        if not content:
+            skipped_empty += 1
+            continue
+
+        if content != doc.page_content:
+            sanitized_docs.append(
+                Document(page_content=content, metadata=doc.metadata))
+        else:
+            sanitized_docs.append(doc)
+
+    return sanitized_docs, skipped_empty
+
+
+def upsert_documents(vs: FAISS, docs: List[Document], persist_dir: Path, batch_size: int = 64) -> None:
     if not docs:
         return
-    vs.add_documents(docs)
-    vs.save_local(str(persist_dir))
+    docs, skipped_empty = _sanitize_documents(docs)
+    if skipped_empty:
+        print(
+            f"[ingest] Skipped {skipped_empty} empty chunks before embedding")
+    if not docs:
+        print("[ingest] No valid chunks to upsert after sanitization")
+        return
+
+    total = len(docs)
+    start = time.time()
+    added = 0
+    skipped_failed = 0
+
+    for offset in range(0, total, batch_size):
+        batch = docs[offset:offset + batch_size]
+        batch_num = (offset // batch_size) + 1
+        batch_total = (total + batch_size - 1) // batch_size
+        print(
+            f"[ingest] Upserting batch {batch_num}/{batch_total} ({len(batch)} chunks)")
+        try:
+            vs.add_documents(batch)
+            added += len(batch)
+        except Exception as batch_error:
+            print(
+                f"[ingest] Batch {batch_num} failed, retrying per chunk: {batch_error}")
+            for doc in batch:
+                try:
+                    vs.add_documents([doc])
+                    added += 1
+                except Exception as doc_error:
+                    skipped_failed += 1
+                    src = doc.metadata.get("source", "unknown")
+                    page = doc.metadata.get("page", "N/A")
+                    print(
+                        f"[ingest] Skipped chunk {src}:{page} due to embedding error: {doc_error}")
+
+    elapsed = time.time() - start
+    print(
+        f"[ingest] Vector upsert done: added={added}, skipped={skipped_failed}, total={total}, time={elapsed:.1f}s")
+
+    if added > 0:
+        vs.save_local(str(persist_dir))
+    else:
+        print("[ingest] No vectors were added; skipping FAISS save")
 
 
 def wipe_index(persist_dir: Path) -> None:

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eu
+set -o pipefail
 
 # Start the Ollama server in the background
 ollama serve >/tmp/ollama.log 2>&1 &
