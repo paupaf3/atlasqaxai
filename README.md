@@ -1,5 +1,6 @@
 # AtlasQAX.ai
-AtlasQAX.ai is an intelligent Question Answering system that delivers **accurate, explainable answers** from multiple data sources.  
+
+AtlasQAX.ai is a project created for **learning purposes**, specifically to explore and understand the basics of Retrieval-Augmented Generation (RAG) and the [LangChain](https://python.langchain.com/) framework. It is an intelligent Question Answering system that delivers **accurate, explainable answers** from multiple data sources.  
 Starting with document-based knowledge retrieval, it is designed to scale towards **databases, APIs, and Microsoft Dataverse** integration.
 
 By combining QA, X (Explainability), and AI, AtlasQAX.ai aims to become a data companion that not only answers but also helps users trust and interpret the information it provides.
