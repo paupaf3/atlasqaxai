@@ -1,7 +1,7 @@
 import faiss
 import time
 from pathlib import Path
-from typing import List, Tuple
+from typing import Iterable, List, Tuple
 from langchain_core.documents import Document
 from langchain_community.vectorstores import FAISS
 from langchain_community.docstore import InMemoryDocstore
@@ -87,6 +87,32 @@ def upsert_documents(vs: FAISS, docs: List[Document], persist_dir: Path, batch_s
         vs.save_local(str(persist_dir))
     else:
         print("[ingest] No vectors were added; skipping FAISS save")
+
+
+def delete_by_sources(vs: FAISS, sources: Iterable[str]) -> int:
+    """Delete every vector whose document.metadata['source'] is in `sources`.
+
+    Returns the number of vectors removed. This is what makes incremental
+    re-ingest correct: without it, updating a file would leave the old
+    chunks behind in the FAISS index alongside the new ones.
+    """
+    sources_set = {s for s in sources if s}
+    if not sources_set:
+        return 0
+
+    docstore_dict = getattr(vs.docstore, "_dict", None)
+    if not docstore_dict:
+        return 0
+
+    ids_to_delete = [
+        doc_id for doc_id, doc in docstore_dict.items()
+        if doc.metadata.get("source") in sources_set
+    ]
+    if not ids_to_delete:
+        return 0
+
+    vs.delete(ids_to_delete)
+    return len(ids_to_delete)
 
 
 def wipe_index(persist_dir: Path) -> None:

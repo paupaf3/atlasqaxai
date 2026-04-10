@@ -74,35 +74,55 @@ def run() -> None:
         config.EMBEDDINGS_BACKEND, config.EMBEDDINGS_MODEL)
     vs = store.load_or_create_faiss(paths.PERSIST_DIR, embeds)
     manifest = hashing.load_manifest(paths.MANIFEST_PATH)
-    new_chunks = []
 
-    print(f"Chunks totales par el índice: {len(chunks)}")
+    print(f"[ingest] Chunks totales para el índice: {len(chunks)}")
 
-    # First, determine which files have changed
-    changed_files = set()
-    unique_sources = {ch.metadata.get("source", "unknown") for ch in chunks}
+    # Determine which sources are new/changed since last ingest.
+    # We key the manifest by `source` (basename for files / URL for webs) and
+    # use `source_path` (full path) only to locate the file for hashing.
+    changed_files: set[str] = set()
+    unique_sources: set[tuple[str, str]] = {
+        (ch.metadata.get("source", "unknown"),
+         ch.metadata.get("source_path", ""))
+        for ch in chunks
+    }
     print(f"[ingest] Unique sources to check: {len(unique_sources)}")
 
-    for src in unique_sources:
-        # Only hash original files once (page chunks share same source name)
-        # Use file path from doc metadata if available; fall back to DATA_DIR/src
-        path = Path(paths.DATA_DIR) / src
-        if not path.exists():  # for safety with loaders that embed full path
-            # skip incremental check if unknown - treat as changed
+    for src, src_path in unique_sources:
+        # Web sources: hashing the URL is meaningless; treat as always changed.
+        # Old vectors are deleted below, so re-ingest is idempotent.
+        if src_path.startswith(("http://", "https://")):
             changed_files.add(src)
             continue
-        h = hashing.file_sha256(path)
+
+        candidate = Path(src_path) if src_path else Path(paths.DATA_DIR) / src
+        if not candidate.exists():
+            candidate = Path(paths.DATA_DIR) / src
+        if not candidate.exists():
+            # Can't hash it; treat as changed so we don't silently miss updates.
+            changed_files.add(src)
+            continue
+
+        h = hashing.file_sha256(candidate)
         if manifest["files"].get(src) != h:
             changed_files.add(src)
             manifest["files"][src] = h
 
-    # Now add all chunks for changed files
-    for ch in chunks:
-        src = ch.metadata.get("source", "unknown")
-        if src in changed_files:
-            new_chunks.append(ch)
+    new_chunks: List[Document] = [
+        ch for ch in chunks
+        if ch.metadata.get("source", "unknown") in changed_files
+    ]
 
     print(f"[ingest] New/updated chunks to write: {len(new_chunks)}")
+
+    # Delete stale vectors for the files that changed BEFORE adding new ones.
+    # Without this step, every re-ingest of an updated file would leave
+    # outdated chunks in the index alongside the new ones.
+    if changed_files:
+        deleted = store.delete_by_sources(vs, changed_files)
+        if deleted:
+            print(f"[ingest] Removed {deleted} stale vectors for changed sources")
+
     print("[ingest] Writing vectors to FAISS index...")
     store.upsert_documents(vs, new_chunks, paths.PERSIST_DIR)
     print("[ingest] Saving manifest...")

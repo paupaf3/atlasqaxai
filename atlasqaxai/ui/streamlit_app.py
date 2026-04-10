@@ -1,6 +1,4 @@
 import streamlit as st
-import io
-import contextlib
 
 from atlasqaxai.commands import ingest, rebuild, wipe, inspect, ask, summary
 
@@ -59,15 +57,14 @@ def main():
         if st.button("🔍 Inspect Index", help="Inspect the current index", use_container_width=True):
             with st.spinner("Inspecting index..."):
                 try:
-                    # Capture the output of inspect.run()
                     import io
                     import contextlib
 
-                    f = io.StringIO()
-                    with contextlib.redirect_stdout(f):
+                    buf = io.StringIO()
+                    with contextlib.redirect_stdout(buf):
                         inspect.run()
-                    output = f.getvalue()
-                    st.text_area("Index Information", output, height=200)
+                    st.text_area(
+                        "Index Information", buf.getvalue(), height=200)
                 except Exception as e:
                     st.error(f"Error inspecting index: {e}")
 
@@ -114,9 +111,24 @@ def main():
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
                 try:
-                    response = ask.run(prompt)
-                    answer = str(response.content)
+                    result = ask.run(prompt)
+                    answer = str(result["answer"].content)
+                    docs = result.get("docs", [])
+
                     st.markdown(answer)
+
+                    if docs:
+                        seen = []
+                        for d in docs:
+                            key = (
+                                d.metadata.get("source", "?"),
+                                d.metadata.get("page", "N/A"),
+                            )
+                            if key not in seen:
+                                seen.append(key)
+                        with st.expander(f"Sources ({len(seen)})"):
+                            for src, page in seen:
+                                st.markdown(f"- `[{src}:{page}]`")
 
                     # Add assistant response to chat history
                     st.session_state.messages.append(

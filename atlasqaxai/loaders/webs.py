@@ -1,5 +1,4 @@
 from typing import List
-from bs4 import SoupStrainer
 from langchain_core.documents import Document
 from langchain_community.document_loaders import WebBaseLoader
 
@@ -21,14 +20,8 @@ def load_documents_from_webs(urls: List[str], user_agent: str = DEFAULT_UA) -> L
         try:
             loader = WebBaseLoader(
                 web_paths=[url],
-
                 # Adds a desktop User-Agent (many sites 403 otherwise)
                 header_template={"User-Agent": user_agent},
-
-                # Avoid loading unnecessary content like headers, footers, etc.
-                # TODO this could be an input param to control and adapat to different page structures
-                # bs_kwargs={"parse_only": SoupStrainer(
-                #     name=("article", "main"))}
             )
             page_docs = loader.load()
 
