@@ -1,9 +1,24 @@
 # AtlasQAX.ai
 
+![Python](https://img.shields.io/badge/python-3.12-blue.svg)
+![LangChain](https://img.shields.io/badge/LangChain-Core-green.svg)
+![FAISS](https://img.shields.io/badge/FAISS-Vector_DB-orange.svg)
+![Ollama](https://img.shields.io/badge/Ollama-Local_LLM-black.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-UI-red.svg)
+
 AtlasQAX.ai is a project created for **learning purposes**, specifically to explore and understand the basics of Retrieval-Augmented Generation (RAG) and the [LangChain](https://python.langchain.com/) framework. It is an intelligent Question Answering system that delivers **accurate, explainable answers** from multiple data sources.  
 Starting with document-based knowledge retrieval, it is designed to scale towards **databases, APIs, and Microsoft Dataverse** integration.
 
-By combining QA, X (Explainability), and AI, AtlasQAX.ai aims to become a data companion that not only answers but also helps users trust and interpret the information it provides.
+By combining QA, X (Explainability), and AI, AtlasQAX.ai aims to become a data companion that not only answers but also helps you **understand and interpret** the information it provides.
+
+## Table of Contents
+- [Project Status](#project-status)
+- [Key Features](#key-features)
+- [Architecture](#architecture)
+- [Quick Start (with Makefile)](#quick-start-with-makefile)
+- [Manual Execution Guide](#manual-execution-guide)
+- [Available Commands](#available-commands)
+- [Tech Stack & Libraries](#tech-stack--libraries)
 
 ---
 ## Project Status
@@ -31,13 +46,76 @@ This repository is actively evolving, and the roadmap involves significant impro
 - **Multiple Interfaces** → Choose between CLI and web interface (Streamlit).
 
 ---
-## Execution Guide
+## Architecture
 
-AtlasQAX.ai runs as a Python app + FAISS index, and **requires an Ollama server** for the LLM and (by default) embeddings.
+```mermaid
+graph LR
+    User((User))
+    
+    subgraph AtlasQAX.ai
+        UI{Interface<br>CLI / Web}
+        
+        subgraph RAG Engine
+            Ingest[Ingestion<br>Read & Embed]
+            Retrieve[Retriever<br>Find Context]
+            Generate[LLM / Ollama<br>Answer]
+        end
+        
+        Store[(FAISS Index<br>Vector DB)]
+    end
+    
+    RawDocs[Raw Documents<br>Files / Webs]
+    
+    RawDocs -->|Processed by| Ingest
+    Ingest -->|Vectors| Store
+    
+    User <-->|Asks Questions| UI
+    UI -->|Query| Retrieve
+    Retrieve <-->|Similarity Search| Store
+    Retrieve -->|Context + Query| Generate
+    Generate -->|Response| UI
+```
 
-You can run Ollama in two ways:
-- **Option A (native)**: install and run Ollama directly on your host machine.
-- **Option B (Docker)**: run Ollama via `docker-compose.yml` (GPU-oriented setup).
+---
+## Quick Start (with Makefile)
+
+We provide a `Makefile` to simplify standard operations locally using Docker and Pipenv.
+
+1. **Install dependencies:**  
+   ```bash
+   make install
+   ```
+
+2. **Start the app and Ollama (background):**  
+   ```bash
+   make start
+   ```  
+   *Note: This starts the Docker compose stack for Ollama and launches the Streamlit app. Open `http://localhost:8501` to use the web interface.*
+
+3. **Check status:**  
+   ```bash
+   make status
+   ```
+
+4. **Ingest documents:**  
+   ```bash
+   make ingest
+   ```
+
+5. **Run CLI interactive mode:**  
+   ```bash
+   make cli
+   ```
+
+6. **Stop the app and Ollama:**  
+   ```bash
+   make stop
+   ```
+
+---
+## Manual Execution Guide
+
+If you prefer running commands manually or without Docker, follow these steps. AtlasQAX.ai runs as a Python app + FAISS index, and **requires an Ollama server** for the LLM and (by default) embeddings.
 
 ### 1) Prerequisites
 
@@ -140,10 +218,6 @@ Then open: `http://localhost:8501`
 Run commands from the **repository root** so paths like `atlasqaxai/ui/streamlit_app.py` and relative data/index paths resolve correctly.
 
 ---
-## Vision
-AtlasQAX.ai combines *QA*, *X (Explainability)*, and *AI* to build a **data companion** you can trust, an agent that not only answers, but also helps you **understand and interpret** the information behind each response.
-
----
 ## Available Commands
 ### Data Management
 - **`ingest`** - Index new or changed documents from your `data/files/` directory
@@ -161,7 +235,6 @@ AtlasQAX.ai combines *QA*, *X (Explainability)*, and *AI* to build a **data comp
 - **`app`** - Launch the Streamlit web interface
 
 ---
-
 ## Tech Stack & Libraries
 ### Core Orchestration
 - **LangChain** — High-level framework to compose LLM/RAG pipelines (load → split → embed → retrieve → generate).  
@@ -209,3 +282,10 @@ AtlasQAX.ai combines *QA*, *X (Explainability)*, and *AI* to build a **data comp
 - **Local-only by default:** AtlasQAX.ai can run fully offline once models are pulled.
 <!-- - **Swap components easily:** You can switch embeddings (Ollama ↔︎ Sentence-Transformers) or vector stores (FAISS ↔︎ others) with minimal code changes. -->
 <!-- - **Incremental ingestion:** The structure supports hashing & manifests so you only re-embed changed files. -->
+
+---
+## Contributing & License
+
+Contributions, issues, and feature requests are always welcome! Since this is a learning-focused project, any ideas on improving the ingestion pipeline, expanding the vector store modules, or fine-tuning the LLM prompts are greatly appreciated.
+
+*This project is currently provided for learning and exploration purposes.*
