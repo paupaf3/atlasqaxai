@@ -1,31 +1,14 @@
 from ..rag import session
+from ..utils import config
 
 
-def run(question: str) -> dict:
-    """Answer a question against the indexed documents.
+def run(question: str, mode: str | None = None) -> str:
+    query_mode = mode or config.QUERY_MODE
+    print(f"Query mode: {query_mode}")
+    print(f"Question: {question}")
 
-    Returns the full chain output dict so callers (CLI, Streamlit) can
-    surface the retrieved sources, not just the LLM string.
-    """
-    print(f"Asking question: {question}")
+    rag = session.get_session().get_rag()
+    answer = rag.query(question, mode=query_mode)
 
-    chain = session.get_session().get_chain()
-    result = chain.invoke(question)
-
-    answer = result["answer"]
-    docs = result.get("docs", [])
-
-    print("\n" + str(answer.content))
-
-    if docs:
-        # Deduplicate by (source, page) so the citation list stays compact.
-        seen = []
-        for d in docs:
-            key = (d.metadata.get("source", "?"), d.metadata.get("page", "N/A"))
-            if key not in seen:
-                seen.append(key)
-        print("\nSources:")
-        for src, page in seen:
-            print(f"  - [{src}:{page}]")
-
-    return result
+    print(f"\n{answer}")
+    return answer

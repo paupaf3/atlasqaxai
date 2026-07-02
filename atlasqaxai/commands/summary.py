@@ -1,50 +1,61 @@
-from collections import Counter
+from pathlib import Path
 
 from ..rag import session
-
-
-def _iter_indexed_documents(vs):
-    """Yield every Document currently held by the FAISS docstore."""
-    docstore_dict = getattr(vs.docstore, "_dict", None)
-    if docstore_dict:
-        yield from docstore_dict.values()
-        return
-
-    # Fallback path used by some FAISS configurations.
-    for doc_id in getattr(vs, "index_to_docstore_id", {}).values():
-        doc = vs.docstore.search(doc_id)
-        if doc:
-            yield doc
+from ..utils import config
 
 
 def get_summary() -> str:
-    """Return a human-readable summary of the documents in the index."""
     try:
-        vs = session.get_session().get_vectorstore()
-        docs = list(_iter_indexed_documents(vs))
+        rag = session.get_session().get_rag()
+        working_dir = Path(config.WORKING_DIR)
+        output_dir = Path(config.OUTPUT_DIR)
 
-        if not docs:
-            return "No documents found in the index. Please ingest some documents first."
+        if not working_dir.exists():
+            return (
+                "No index found. Please ingest documents first.\n"
+                "Run: python -m atlasqaxai ingest"
+            )
 
-        counts = Counter(d.metadata.get("source", "Unknown") for d in docs)
+        ns_counts = {}
+        for ns_dir in working_dir.iterdir():
+            if ns_dir.is_dir():
+                count = len(list(ns_dir.glob("*.json")))
+                if count > 0:
+                    ns_counts[ns_dir.name] = count
+
+        total_chunks = ns_counts.get("text_chunks", 0)
+        total_docs = ns_counts.get("full_docs", 0)
+        total_entities = ns_counts.get("full_entities", 0)
+        total_relations = ns_counts.get("full_relations", 0)
+
+        output_count = 0
+        if output_dir.exists():
+            output_count = len(list(output_dir.rglob("*.md")))
 
         lines = [
-            f"**Index Summary** ({len(docs)} total chunks across {len(counts)} documents)",
+            f"**Index Summary** — {total_docs} documents, {total_chunks} chunks",
             "",
-            "**Documents in index:**",
         ]
-        for src, count in counts.most_common():
-            lines.append(f"\n• {src} — {count} chunks")
-        lines.extend(["", "Ask me anything about these documents!"])
+        if total_entities > 0:
+            lines.append(f"• Entities: {total_entities}")
+        if total_relations > 0:
+            lines.append(f"• Relations: {total_relations}")
+        if output_count > 0:
+            lines.append(f"• Parsed files: {output_count}")
+        lines.extend(
+            [
+                "",
+                "Ask me anything about these documents!",
+            ]
+        )
         return "\n".join(lines)
 
     except Exception as e:
         return (
             f"Could not load index summary: {e}\n\n"
-            "Please make sure documents are ingested and the index is properly built."
+            "Please make sure documents are ingested and Ollama is running."
         )
 
 
 def run() -> None:
-    """Print the index summary to console."""
     print(get_summary())

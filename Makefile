@@ -1,6 +1,3 @@
-# AtlasQAX.ai - Makefile
-# Minimal targets: install, start, stop (+ a couple of helpers).
-
 MODULE   := atlasqaxai
 RUN      := pipenv run python -m $(MODULE)
 APP_PID  := .atlasqaxai.pid
@@ -12,7 +9,7 @@ APP_LOG  := .atlasqaxai.log
 
 help: ## Show this help
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage: make <target>\n\nTargets:\n"} \
-	     /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
+	     /^[a-zA-Z_-]+:.*##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
 install: ## Install dependencies with pipenv
 	pipenv install
@@ -44,6 +41,9 @@ cli: ## Run the interactive CLI (Ctrl+C to exit)
 
 ingest: ## Index documents from data/files
 	$(RUN) ingest
+
+ask: ## Ask a question
+	$(RUN) ask --mode hybrid "$(Q)"
 
 status: ## Show app and Ollama status
 	@if [ -f $(APP_PID) ] && kill -0 `cat $(APP_PID)` 2>/dev/null; then \

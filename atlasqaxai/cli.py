@@ -30,51 +30,57 @@ def run_wipe(_) -> None:
 
 
 def run_ask(args) -> None:
-    # If a question is provided, answer once; otherwise enter an interactive loop
     if args.question:
-        ask.run(" ".join(args.question))
+        ask.run(" ".join(args.question), mode=args.mode)
         return
 
     print("Entering interactive mode (type 'exit' to quit)")
-
     while True:
         question = input("\n> ").strip()
         if question.lower() in {"exit", "quit"}:
             break
         if question:
-            ask.run(question)
+            ask.run(question, mode=args.mode)
 
 
 def build_parser() -> argparse.ArgumentParser:
     argument_parser = argparse.ArgumentParser(
-        prog="atlasqaxai", description="AtlasQAX.ai is an intelligent Question Answering system that delivers accurate answers from multiple data sources.")
+        prog="atlasqaxai",
+        description="AtlasQAX.ai — Intelligent Question Answering with RAG-Anything",
+    )
 
     sub = argument_parser.add_subparsers(dest="cmd")
 
-    parser_app = sub.add_parser(
-        "app", help="Execute the Streamlit web app")
+    parser_app = sub.add_parser("app", help="Launch the Streamlit web UI")
     parser_app.set_defaults(func=run_app)
 
-    parser_ingest = sub.add_parser(
-        "ingest", help="Index new/changed documents")
+    parser_ingest = sub.add_parser("ingest", help="Ingest and index documents")
     parser_ingest.set_defaults(func=run_ingest)
 
     parser_rebuild = sub.add_parser(
-        "rebuild", help="Rebuild the entire index from scratch")
+        "rebuild", help="Wipe and re-ingest all documents"
+    )
     parser_rebuild.set_defaults(func=run_rebuild)
 
-    parser_wipe = sub.add_parser("wipe", help="Delete index")
+    parser_wipe = sub.add_parser("wipe", help="Delete the entire index")
     parser_wipe.set_defaults(func=run_wipe)
 
-    parser_inspect = sub.add_parser("inspect", help="Inspect the index")
+    parser_inspect = sub.add_parser("inspect", help="Show index contents")
     parser_inspect.set_defaults(func=run_inspect)
 
     parser_summary = sub.add_parser("summary", help="Show index summary")
     parser_summary.set_defaults(func=run_summary)
 
-    parser_ask = sub.add_parser("ask", help="Ask a question")
-    parser_ask.add_argument("question", nargs="*",
-                            help="Your question text (omit for interactive mode)")
+    parser_ask = sub.add_parser("ask", help="Ask a question against the index")
+    parser_ask.add_argument(
+        "question", nargs="*", help="Question text (omit for interactive mode)"
+    )
+    parser_ask.add_argument(
+        "--mode",
+        choices=["hybrid", "local", "global", "naive", "mix"],
+        default="hybrid",
+        help="Retrieval mode (default: hybrid)",
+    )
     parser_ask.set_defaults(func=run_ask)
 
     return argument_parser
@@ -84,7 +90,6 @@ def run():
     parser = build_parser()
     args = parser.parse_args()
 
-    # Default to interactive 'ask' if no subcommand provided
     if not hasattr(args, "func"):
         args = parser.parse_args(["ask"])
 

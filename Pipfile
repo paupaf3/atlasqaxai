@@ -5,14 +5,10 @@ name = "pypi"
 
 [packages]
 python-dotenv = "*"
-langchain = "*"
-langchain-community = "*"
-langchain-ollama = "*"
 beautifulsoup4 = "*"
-faiss-cpu = "*"
 python-docx = "*"
 streamlit = "*"
-unstructured = {extras = ["pdf"], version = "*"}
+raganything = {extras = ["all"], version = "*"}
 
 [dev-packages]
 
