@@ -1,0 +1,2393 @@
+Loading .env environment variables...
+Access Web App through http://localhost:8501
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://172.18.159.209:8501
+
+INFO: RAGAnything initialized with config:
+INFO:   Working directory: ./rag_storage
+INFO:   Parser: mineru
+INFO:   Parse method: auto
+INFO:   Multimodal processing - Image: True, Table: True, Equation: True
+INFO:   Max concurrent files: 1
+INFO: Created working directory: ./rag_storage
+INFO: RAGAnything initialized with config:
+INFO:   Working directory: ./rag_storage
+INFO:   Parser: mineru
+INFO:   Parse method: auto
+INFO:   Multimodal processing - Image: True, Table: True, Equation: True
+INFO:   Max concurrent files: 1
+INFO: Parser 'mineru' installation verified
+INFO: Initializing LightRAG with parameters: {'working_dir': './rag_storage', 'chunk_token_size': 1100, 'chunk_overlap_token_size': 150}
+INFO: [] Created new empty graph file: ./rag_storage/graph_chunk_entity_relation.graphml
+INFO:nano-vectordb:Init {'embedding_dim': 1024, 'metric': 'cosine', 'storage_file': './rag_storage/vdb_entities.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 1024, 'metric': 'cosine', 'storage_file': './rag_storage/vdb_relationships.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 1024, 'metric': 'cosine', 'storage_file': './rag_storage/vdb_chunks.json'} 0 data
+INFO: [] Process 690229 KV load full_docs with 0 records
+INFO: [] Process 690229 KV load text_chunks with 0 records
+INFO: [] Process 690229 KV load full_entities with 0 records
+INFO: [] Process 690229 KV load full_relations with 0 records
+INFO: [] Process 690229 KV load entity_chunks with 0 records
+INFO: [] Process 690229 KV load relation_chunks with 0 records
+INFO: [] Process 690229 KV load llm_response_cache with 0 records
+INFO: [] Process 690229 doc status load doc_status with 0 records
+INFO: [] Process 690229 KV load parse_cache with 0 records
+INFO: [] Process 690229 KV load multimodal_status with 0 records
+INFO: Multimodal processors initialized with context support
+INFO: Available processors: ['image', 'table', 'equation', 'generic']
+INFO: Context configuration: ContextConfig(context_window=1, context_mode='page', max_context_tokens=2000, include_headers=True, include_captions=True, filter_content_types=['text'])
+INFO: LightRAG, parse cache, multimodal status cache, and multimodal processors initialized
+INFO: Found 1 files to process in data/files
+INFO: Starting complete document processing: data/files/Pera Conference CA.md
+INFO: Starting document parsing: data/files/Pera Conference CA.md
+INFO: Using mineru parser with method: auto
+INFO: Using generic parser for .md file (method=auto)...
+INFO:raganything.parser:Converting Pera Conference CA.md to PDF...
+WARNING:raganything.parser:WenQuanYi font not found at /usr/share/fonts/wqy-microhei/wqy-microhei.ttc. Chinese characters may not render correctly.
+INFO:raganything.parser:Successfully converted Pera Conference CA.md to PDF (8.6 KB)
+INFO:raganything.parser:Executing mineru command: mineru -p output/Pera Conference CA.pdf -o output/Pera Conference CA_ceeba78f -m auto
+INFO:raganything.parser:[MinerU] 2026-07-01 14:25:06.153 | INFO     | mineru.cli.client:run_orchestrated_cli:953 - Started local mineru-api at http://127.0.0.1:55531
+INFO:raganything.parser:[MinerU] 2026-07-01 14:25:09.098 | INFO     | __main__:create_app:236 - Request concurrency limited to 3
+INFO:raganything.parser:[MinerU] INFO:     Started server process [690654]
+INFO:raganything.parser:[MinerU] INFO:     Waiting for application startup.
+INFO:raganything.parser:[MinerU] INFO:     Application startup complete.
+INFO:raganything.parser:[MinerU] INFO:     Uvicorn running on http://127.0.0.1:55531 (Press CTRL+C to quit)
+INFO:raganything.parser:[MinerU] 2026-07-01 14:25:10.173 | INFO     | mineru.cli.client:run_planned_task:832 - Submitting batch 1/1 | 1 document, 3 pages in this batch | 3 pages total | task#1 [Pera Conference CA]
+INFO:raganything.parser:[MinerU] 2026-07-01 14:25:10.213 | INFO     | mineru.utils.engine_utils:get_vlm_engine:34 - Using transformers as the inference engine for VLM.
+INFO:raganything.parser:[MinerU] Start MinerU FastAPI Service: http://127.0.0.1:55531
+INFO:raganything.parser:[MinerU] API documentation: http://127.0.0.1:55531/docs
+INFO:raganything.parser:[MinerU] Fetching 13 files:   0%|          | 0/13 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] Fetching 13 files:   8%|▊         | 1/13 [00:00<00:05,  2.40it/s]
+INFO:raganything.parser:[MinerU] Fetching 13 files:  15%|█▌        | 2/13 [00:00<00:03,  3.34it/s]
+INFO:raganything.parser:[MinerU] Fetching 13 files:  62%|██████▏   | 8/13 [01:16<00:52, 10.57s/it]
+INFO:raganything.parser:[MinerU] Fetching 13 files: 100%|██████████| 13/13 [01:16<00:00,  5.87s/it]
+INFO:raganything.parser:[MinerU] 2026-07-01 14:26:31.487 | INFO     | mineru.backend.vlm.utils:set_default_batch_size:106 - gpu_memory: 16 GB, batch_size: 8
+INFO:raganything.parser:[MinerU] 2026-07-01 14:26:31.490 | INFO     | mineru.backend.vlm.vlm_analyze:get_model:251 - get transformers predictor cost: 78.23s
+INFO:raganything.parser:[MinerU] 2026-07-01 14:26:32.686 | INFO     | mineru.backend.hybrid.hybrid_analyze:aio_doc_analyze:1139 - Hybrid processing-window run. page_count=3, window_size=64, total_windows=1
+INFO:raganything.parser:[MinerU] 2026-07-01 14:26:32.686 | INFO     | mineru.backend.hybrid.hybrid_analyze:get_batch_ratio:875 - hybrid batch ratio (auto, vram=16GB): 8
+INFO:raganything.parser:[MinerU] 2026-07-01 14:26:35.651 | INFO     | mineru.backend.hybrid.hybrid_analyze:aio_doc_analyze:1161 - Hybrid processing window 1/1: pages 1-3/3 (3 pages)
+INFO:raganything.parser:[MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] Fetching 1 files: 100%|██████████| 1/1 [-00:16<00:00, -0.06it/s]
+INFO:raganything.parser:[MinerU] Fetching 1 files:   0%|          | 0/1 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:03<00:00,  3.59s/it]
+INFO:raganything.parser:[MinerU] Fetching 1 files: 100%|██████████| 1/1 [00:03<00:00,  3.59s/it]
+INFO:raganything.parser:[MinerU] Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] Fetching 3 files:  33%|███▎      | 1/3 [00:00<00:00,  2.93it/s]
+INFO:raganything.parser:[MinerU] Fetching 3 files:  67%|██████▋   | 2/3 [00:10<00:06,  6.17s/it]
+INFO:raganything.parser:[MinerU] Fetching 3 files: 100%|██████████| 3/3 [00:10<00:00,  3.53s/it]
+INFO:raganything.parser:[MinerU] Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] Fetching 7 files:  14%|█▍        | 1/7 [00:00<00:01,  5.46it/s]
+INFO:raganything.parser:[MinerU] Fetching 7 files:  57%|█████▋    | 4/7 [00:34<00:28,  9.34s/it]
+INFO:raganything.parser:[MinerU] Fetching 7 files: 100%|██████████| 7/7 [00:34<00:00,  4.94s/it]
+INFO:raganything.parser:[MinerU] Layout Predict:   0%|          | 0/3 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] Layout Predict: 100%|██████████| 3/3 [00:01<00:00,  1.65it/s]
+INFO:raganything.parser:[MinerU] Layout Predict: 100%|██████████| 3/3 [00:01<00:00,  1.65it/s]
+INFO:raganything.parser:[MinerU] Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] Predict: 100%|██████████| 1/1 [00:00<00:00,  1.13it/s]
+INFO:raganything.parser:[MinerU] Predict: 100%|██████████| 1/1 [00:00<00:00,  1.13it/s]
+INFO:raganything.parser:[MinerU] OCR-det:   0%|          | 0/46 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  57%|█████▋    | 26/46 [00:00<00:00, 43.17it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  70%|██████▉   | 32/46 [00:00<00:00, 32.72it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  78%|███████▊  | 36/46 [00:01<00:00, 31.68it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  87%|████████▋ | 40/46 [00:01<00:00, 30.39it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  96%|█████████▌| 44/46 [00:01<00:00, 29.69it/s]
+INFO:raganything.parser:[MinerU] OCR-det: 100%|██████████| 46/46 [00:01<00:00, 31.75it/s]
+INFO:raganything.parser:[MinerU] Processing pages:   0%|          | 0/3 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  67%|██████▋   | 2/3 [00:00<00:00, 14.27it/s]
+INFO:raganything.parser:[MinerU] Processing pages: 100%|██████████| 3/3 [00:00<00:00, 16.49it/s]
+INFO:raganything.parser:[MinerU] 2026-07-01 14:27:35.242 | INFO     | mineru.cli.client:run_planned_task:883 - Completed batch 1/1 | Processed 3/3 pages | 1 of 1 batch finished | task#1 [Pera Conference CA]
+INFO:raganything.parser:[MinerU] INFO:     Shutting down
+INFO:raganything.parser:[MinerU] INFO:     Waiting for application shutdown.
+INFO:raganything.parser:[MinerU] INFO:     Application shutdown complete.
+INFO:raganything.parser:[MinerU] INFO:     Finished server process [690654]
+INFO:raganything.parser:[MinerU] Command executed successfully
+INFO:raganything.parser:Found MinerU output in subdirectory: hybrid_auto
+INFO:raganything.parser:Fixing image paths in output/Pera Conference CA_ceeba78f/Pera Conference CA/hybrid_auto/Pera Conference CA_content_list.json with base directory: output/Pera Conference CA_ceeba78f/Pera Conference CA/hybrid_auto
+INFO: Parsing data/files/Pera Conference CA.md complete! Extracted 47 content blocks
+INFO: Stored parsing result in cache: 9622179b7e7fdf6762dc19e82b0867da
+INFO: 
+Content Information:
+INFO: * Total blocks in content_list: 47
+INFO: * Content block types:
+INFO:   - text: 46
+INFO:   - code: 1
+INFO: Content separation complete:
+INFO:   - Text content length: 4519 characters
+INFO:   - Multimodal items count: 1
+INFO:   - Multimodal type distribution: {'code': 1}
+INFO: Setting content source for context-aware multimodal processing...
+INFO: Content source set with format: minerU
+INFO: Content source set with format: minerU
+INFO: Content source set with format: minerU
+INFO: Content source set with format: minerU
+INFO: Content source set for context extraction (format: minerU)
+INFO: Starting text content insertion into LightRAG...
+INFO: Processing 1 document(s)
+INFO: Extracting stage 1/1: Pera Conference CA.md
+INFO: Processing d-id: doc-8edb29ba391f17655e6f76f42952a4a9
+INFO: Embedding func: 8 new workers initialized (Timeouts: Func: 30s, Worker: 60s, Health Check: 75s)
+ERROR: Traceback (most recent call last):
+  File "/home/pagusti/.local/share/virtualenvs/atlasqaxai-Zzs6rSTG/lib/python3.12/site-packages/lightrag/lightrag.py", line 2040, in process_document
+    await asyncio.gather(*first_stage_tasks)
+  File "/home/pagusti/.local/share/virtualenvs/atlasqaxai-Zzs6rSTG/lib/python3.12/site-packages/lightrag/kg/nano_vector_db_impl.py", line 126, in upsert
+    embeddings_list = await asyncio.gather(*embedding_tasks)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pagusti/.local/share/virtualenvs/atlasqaxai-Zzs6rSTG/lib/python3.12/site-packages/lightrag/utils.py", line 537, in __call__
+    total_elements = result.size  # Total number of elements in the numpy array
+                     ^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'size'
+
+ERROR: Failed to extract document 1/1: Pera Conference CA.md
+INFO: Enqueued document processing pipeline stopped
+INFO: Text content insertion complete
+INFO: Starting multimodal content processing...
+INFO: Starting to process 1 multimodal content items
+WARNING: Using regex fallback for JSON parsing
+INFO: Multimodal chunk generation progress: 1/1 (100.0%)
+INFO: Generated descriptions for 1/1 multimodal items using correct processors
+ERROR: Error storing chunks to storage: 'list' object has no attribute 'size'
+ERROR: Error in multimodal processing: 'list' object has no attribute 'size'
+WARNING: Falling back to individual multimodal processing
+INFO: Processing item 1/1: code content
+ERROR: Error processing code content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Individual multimodal content processing complete
+INFO: Document data/files/Pera Conference CA.md processing complete!
+INFO: Processing complete!
+INFO:   Successful: 1 files
+INFO:   Failed: 0 files
+INFO: Successfully finalized 12 storages
+INFO: Successfully finalized all RAGAnything storages
+INFO: RAGAnything initialized with config:
+INFO:   Working directory: ./rag_storage
+INFO:   Parser: mineru
+INFO:   Parse method: auto
+INFO:   Multimodal processing - Image: True, Table: True, Equation: True
+INFO:   Max concurrent files: 1
+INFO: Created working directory: ./rag_storage
+INFO: RAGAnything initialized with config:
+INFO:   Working directory: ./rag_storage
+INFO:   Parser: mineru
+INFO:   Parse method: auto
+INFO:   Multimodal processing - Image: True, Table: True, Equation: True
+INFO:   Max concurrent files: 1
+INFO: Parser 'mineru' installation verified
+INFO: Initializing LightRAG with parameters: {'working_dir': './rag_storage', 'chunk_token_size': 1100, 'chunk_overlap_token_size': 150}
+INFO: [] Created new empty graph file: ./rag_storage/graph_chunk_entity_relation.graphml
+INFO:nano-vectordb:Init {'embedding_dim': 1024, 'metric': 'cosine', 'storage_file': './rag_storage/vdb_entities.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 1024, 'metric': 'cosine', 'storage_file': './rag_storage/vdb_relationships.json'} 0 data
+INFO:nano-vectordb:Init {'embedding_dim': 1024, 'metric': 'cosine', 'storage_file': './rag_storage/vdb_chunks.json'} 0 data
+INFO: Multimodal processors initialized with context support
+INFO: Available processors: ['image', 'table', 'equation', 'generic']
+INFO: Context configuration: ContextConfig(context_window=1, context_mode='page', max_context_tokens=2000, include_headers=True, include_captions=True, filter_content_types=['text'])
+INFO: LightRAG, parse cache, multimodal status cache, and multimodal processors initialized
+INFO: Found 1 files to process in data/files
+INFO: Starting complete document processing: data/files/MANUAL LLAVOR 2025 CA.pdf
+INFO: Starting document parsing: data/files/MANUAL LLAVOR 2025 CA.pdf
+INFO: Using mineru parser with method: auto
+INFO: Detected PDF file, using parser for PDF...
+INFO:raganything.parser:Executing mineru command: mineru -p data/files/MANUAL LLAVOR 2025 CA.pdf -o output/MANUAL LLAVOR 2025 CA_db9a0417 -m auto
+INFO:raganything.parser:[MinerU] 2026-07-01 14:32:34.828 | INFO     | mineru.cli.client:run_orchestrated_cli:953 - Started local mineru-api at http://127.0.0.1:43793
+INFO:raganything.parser:[MinerU] 2026-07-01 14:32:37.168 | INFO     | __main__:create_app:236 - Request concurrency limited to 3
+INFO:raganything.parser:[MinerU] INFO:     Started server process [695609]
+INFO:raganything.parser:[MinerU] INFO:     Waiting for application startup.
+INFO:raganything.parser:[MinerU] INFO:     Application startup complete.
+INFO:raganything.parser:[MinerU] INFO:     Uvicorn running on http://127.0.0.1:43793 (Press CTRL+C to quit)
+INFO:raganything.parser:[MinerU] 2026-07-01 14:32:37.353 | INFO     | mineru.cli.client:run_planned_task:832 - Submitting batch 1/1 | 1 document, 136 pages in this batch | 136 pages total | task#1 [MANUAL LLAVOR 2025 CA]
+INFO:raganything.parser:[MinerU] 2026-07-01 14:32:38.083 | INFO     | mineru.utils.engine_utils:get_vlm_engine:34 - Using transformers as the inference engine for VLM.
+INFO:raganything.parser:[MinerU] 2026-07-01 14:32:41.518 | INFO     | mineru.backend.vlm.utils:set_default_batch_size:106 - gpu_memory: 16 GB, batch_size: 8
+INFO:raganything.parser:[MinerU] 2026-07-01 14:32:41.521 | INFO     | mineru.backend.vlm.vlm_analyze:get_model:251 - get transformers predictor cost: 1.27s
+INFO:raganything.parser:[MinerU] Start MinerU FastAPI Service: http://127.0.0.1:43793
+INFO:raganything.parser:[MinerU] API documentation: http://127.0.0.1:43793/docs
+INFO:raganything.parser:[MinerU] 2026-07-01 14:32:41.725 | INFO     | mineru.backend.hybrid.hybrid_analyze:aio_doc_analyze:1139 - Hybrid processing-window run. page_count=136, window_size=64, total_windows=3
+INFO:raganything.parser:[MinerU] 2026-07-01 14:32:41.725 | INFO     | mineru.backend.hybrid.hybrid_analyze:get_batch_ratio:875 - hybrid batch ratio (auto, vram=16GB): 8
+INFO:raganything.parser:[MinerU] 2026-07-01 14:32:47.659 | INFO     | mineru.backend.hybrid.hybrid_analyze:aio_doc_analyze:1161 - Hybrid processing window 1/3: pages 1-64/136 (64 pages)
+INFO:raganything.parser:[MinerU] Layout Predict:   0%|          | 0/64 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] Layout Predict:  12%|█▎        | 8/64 [00:00<00:06,  8.06it/s]
+INFO:raganything.parser:[MinerU] Layout Predict:  25%|██▌       | 16/64 [00:01<00:03, 12.97it/s]
+INFO:raganything.parser:[MinerU] Layout Predict:  50%|█████     | 32/64 [00:01<00:01, 27.36it/s]
+INFO:raganything.parser:[MinerU] Layout Predict:  62%|██████▎   | 40/64 [00:01<00:00, 25.95it/s]
+INFO:raganything.parser:[MinerU] Layout Predict:  75%|███████▌  | 48/64 [00:02<00:00, 24.93it/s]
+INFO:raganything.parser:[MinerU] Layout Predict:  88%|████████▊ | 56/64 [00:02<00:00, 24.25it/s]
+INFO:raganything.parser:[MinerU] Layout Predict: 100%|██████████| 64/64 [00:02<00:00, 23.71it/s]
+INFO:raganything.parser:[MinerU] Layout Predict: 100%|██████████| 64/64 [00:02<00:00, 21.74it/s]
+INFO:raganything.parser:[MinerU] Table orientation det:   0%|          | 0/14 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] Table orientation det:   7%|▋         | 1/14 [00:00<00:04,  2.71it/s]
+INFO:raganything.parser:[MinerU] Table orientation det:  21%|██▏       | 3/14 [00:00<00:01,  7.08it/s]
+INFO:raganything.parser:[MinerU] Table orientation det:  57%|█████▋    | 8/14 [00:00<00:00, 16.96it/s]
+INFO:raganything.parser:[MinerU] Table orientation det: 100%|██████████| 14/14 [00:00<00:00, 27.15it/s]
+INFO:raganything.parser:[MinerU] Table orientation score: 100%|██████████| 14/14 [00:00<00:00, 27.15it/s]
+INFO:raganything.parser:[MinerU] Table orientation score: 100%|██████████| 14/14 [00:00<00:00, 27.15it/s]
+INFO:raganything.parser:[MinerU] Table orientation: 100%|██████████| 14/14 [00:00<00:00, 27.15it/s]
+INFO:raganything.parser:[MinerU] Table orientation: 100%|██████████| 14/14 [00:00<00:00, 27.15it/s]
+INFO:raganything.parser:[MinerU] Table orientation: 100%|██████████| 14/14 [00:00<00:00, 18.75it/s]
+INFO:raganything.parser:[MinerU] Predict:   0%|          | 0/15 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] Predict:   7%|▋         | 1/15 [00:03<00:50,  3.62s/it]
+INFO:raganything.parser:[MinerU] Predict:  60%|██████    | 9/15 [00:30<00:20,  3.35s/it]
+INFO:raganything.parser:[MinerU] Predict: 100%|██████████| 15/15 [00:27<00:00,  1.82s/it]
+INFO:raganything.parser:[MinerU] MFR Predict:   0%|          | 0/24 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] MFR Predict:  67%|██████▋   | 16/24 [00:00<00:00, 35.20it/s]
+INFO:raganything.parser:[MinerU] MFR Predict: 100%|██████████| 24/24 [00:00<00:00, 30.82it/s]
+INFO:raganything.parser:[MinerU] MFR Predict: 100%|██████████| 24/24 [00:00<00:00, 31.60it/s]
+INFO:raganything.parser:[MinerU] OCR-det:   0%|          | 0/499 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] OCR-det:   1%|          | 3/499 [00:01<04:05,  2.02it/s]
+INFO:raganything.parser:[MinerU] OCR-det:   1%|          | 5/499 [00:01<02:18,  3.56it/s]
+INFO:raganything.parser:[MinerU] OCR-det:   3%|▎         | 17/499 [00:01<00:29, 16.22it/s]
+INFO:raganything.parser:[MinerU] OCR-det:   5%|▌         | 25/499 [00:01<00:20, 22.66it/s]
+INFO:raganything.parser:[MinerU] OCR-det:   7%|▋         | 35/499 [00:01<00:13, 33.98it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  20%|█▉        | 99/499 [00:02<00:04, 99.08it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  28%|██▊       | 140/499 [00:02<00:02, 135.91it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  40%|████      | 201/499 [00:02<00:01, 185.06it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  48%|████▊     | 239/499 [00:02<00:01, 180.70it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  56%|█████▌    | 277/499 [00:03<00:01, 191.14it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  60%|██████    | 301/499 [00:03<00:01, 195.50it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  65%|██████▍   | 324/499 [00:03<00:00, 181.16it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  70%|██████▉   | 349/499 [00:03<00:00, 159.51it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  76%|███████▌  | 377/499 [00:03<00:00, 128.64it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  79%|███████▉  | 394/499 [00:04<00:00, 122.24it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  83%|████████▎ | 414/499 [00:04<00:00, 127.78it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  86%|████████▌ | 430/499 [00:04<00:00, 125.39it/s]
+INFO:raganything.parser:[MinerU] OCR-det:  99%|█████████▉| 493/499 [00:04<00:00, 220.50it/s]
+INFO:raganything.parser:[MinerU] OCR-det: 100%|██████████| 499/499 [00:04<00:00, 106.77it/s]
+INFO:raganything.parser:[MinerU] Processing pages:   0%|          | 0/136 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] Processing pages:   4%|▎         | 5/136 [00:00<00:02, 45.50it/s]
+INFO:raganything.parser:[MinerU] Processing pages:   7%|▋         | 10/136 [00:00<00:04, 28.46it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  10%|█         | 14/136 [00:00<00:04, 28.04it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  12%|█▎        | 17/136 [00:00<00:04, 28.58it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  15%|█▍        | 20/136 [00:00<00:07, 15.31it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  17%|█▋        | 23/136 [00:01<00:06, 17.44it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  19%|█▉        | 26/136 [00:01<00:05, 18.74it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  22%|██▏       | 30/136 [00:01<00:04, 22.26it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  25%|██▌       | 34/136 [00:01<00:04, 24.03it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  27%|██▋       | 37/136 [00:01<00:04, 23.70it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  29%|██▉       | 40/136 [00:01<00:04, 23.60it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  32%|███▏      | 44/136 [00:01<00:03, 25.67it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  35%|███▍      | 47/136 [00:01<00:03, 26.52it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  38%|███▊      | 51/136 [00:02<00:02, 29.83it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  40%|████      | 55/136 [00:02<00:02, 27.42it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  43%|████▎     | 58/136 [00:02<00:02, 27.88it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  45%|████▍     | 61/136 [00:02<00:02, 26.15it/s]2026-07-01 14:33:31.373 | INFO     | mineru.backend.hybrid.hybrid_analyze:aio_doc_analyze:1161 - Hybrid processing window 2/3: pages 65-128/136 (64 pages)
+INFO:raganything.parser:[MinerU] Layout Predict:   0%|          | 0/64 [00:00<?, ?it/s][A
+INFO:raganything.parser:[MinerU] Layout Predict:  12%|█▎        | 8/64 [00:00<00:05, 11.11it/s][A
+INFO:raganything.parser:[MinerU] Layout Predict:  25%|██▌       | 16/64 [00:01<00:03, 15.90it/s][A
+INFO:raganything.parser:[MinerU] Layout Predict:  38%|███▊      | 24/64 [00:01<00:02, 18.31it/s][A
+INFO:raganything.parser:[MinerU] Layout Predict:  50%|█████     | 32/64 [00:01<00:01, 19.77it/s][A
+INFO:raganything.parser:[MinerU] Layout Predict:  62%|██████▎   | 40/64 [00:02<00:01, 19.39it/s][A
+INFO:raganything.parser:[MinerU] Layout Predict:  75%|███████▌  | 48/64 [00:02<00:00, 20.43it/s][A
+INFO:raganything.parser:[MinerU] Layout Predict:  88%|████████▊ | 56/64 [00:02<00:00, 21.03it/s][A
+INFO:raganything.parser:[MinerU] Layout Predict: 100%|██████████| 64/64 [00:03<00:00, 21.46it/s][A
+INFO:raganything.parser:[MinerU] Layout Predict: 100%|██████████| 64/64 [00:03<00:00, 19.53it/s]
+INFO:raganything.parser:[MinerU] Table orientation det:   0%|          | 0/40 [00:00<?, ?it/s][A
+INFO:raganything.parser:[MinerU] Table orientation det:  32%|███▎      | 13/40 [00:00<00:00, 46.95it/s][A
+INFO:raganything.parser:[MinerU] Table orientation det:  95%|█████████▌| 38/40 [00:00<00:00, 87.48it/s][A
+INFO:raganything.parser:[MinerU] Table orientation score: 100%|██████████| 40/40 [00:00<00:00, 87.48it/s][A
+INFO:raganything.parser:[MinerU] Table orientation score: 100%|██████████| 40/40 [00:00<00:00, 87.48it/s][A
+INFO:raganything.parser:[MinerU] Table orientation: 100%|██████████| 40/40 [00:00<00:00, 87.48it/s]      [A
+INFO:raganything.parser:[MinerU] Table orientation: 100%|██████████| 40/40 [00:00<00:00, 87.48it/s][A
+INFO:raganything.parser:[MinerU] Table orientation: 100%|██████████| 40/40 [00:00<00:00, 76.79it/s]
+INFO:raganything.parser:[MinerU] Predict:   0%|          | 0/40 [00:00<?, ?it/s][A
+INFO:raganything.parser:[MinerU] Predict:  20%|██        | 8/40 [00:04<00:16,  1.96it/s][A
+INFO:raganything.parser:[MinerU] Predict:  40%|████      | 16/40 [00:09<00:14,  1.68it/s][A
+INFO:raganything.parser:[MinerU] Processing pages:  47%|████▋     | 64/136 [00:17<00:02, 26.15it/s]
+INFO:raganything.parser:[MinerU] Predict:  60%|██████    | 24/40 [00:13<00:09,  1.71it/s][A
+INFO:raganything.parser:[MinerU] Predict:  80%|████████  | 32/40 [00:21<00:05,  1.41it/s][A
+INFO:raganything.parser:[MinerU] Predict: 100%|██████████| 40/40 [00:27<00:00,  1.33it/s][A
+INFO:raganything.parser:[MinerU] Predict: 100%|██████████| 40/40 [00:27<00:00,  1.44it/s]
+INFO:raganything.parser:[MinerU] MFR Predict:   0%|          | 0/24 [00:00<?, ?it/s][A
+INFO:raganything.parser:[MinerU] MFR Predict:  67%|██████▋   | 16/24 [00:00<00:00, 41.40it/s][A
+INFO:raganything.parser:[MinerU] MFR Predict: 100%|██████████| 24/24 [00:00<00:00, 29.35it/s][A
+INFO:raganything.parser:[MinerU] MFR Predict: 100%|██████████| 24/24 [00:00<00:00, 31.16it/s]
+INFO:raganything.parser:[MinerU] OCR-det:   0%|          | 0/677 [00:00<?, ?it/s][A
+INFO:raganything.parser:[MinerU] OCR-det:   0%|          | 3/677 [00:01<05:35,  2.01it/s][A
+INFO:raganything.parser:[MinerU] OCR-det:   4%|▍         | 27/677 [00:01<00:28, 22.62it/s][A
+INFO:raganything.parser:[MinerU] OCR-det:  13%|█▎        | 91/677 [00:01<00:06, 89.83it/s][A
+INFO:raganything.parser:[MinerU] OCR-det:  19%|█▉        | 132/677 [00:01<00:04, 128.06it/s][A
+INFO:raganything.parser:[MinerU] OCR-det:  29%|██▉       | 196/677 [00:02<00:02, 167.41it/s][A
+INFO:raganything.parser:[MinerU] OCR-det:  34%|███▍      | 229/677 [00:02<00:02, 177.48it/s][A
+INFO:raganything.parser:[MinerU] OCR-det:  42%|████▏     | 282/677 [00:22<00:57,  6.88it/s] [A
+INFO:raganything.parser:[MinerU] OCR-det:  93%|█████████▎| 632/677 [00:24<00:01, 27.80it/s][A
+INFO:raganything.parser:[MinerU] OCR-det: 100%|██████████| 677/677 [00:04<00:00, 145.48it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  49%|████▉     | 67/136 [00:02<00:02, 26.75it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  51%|█████▏    | 70/136 [00:02<00:02, 26.34it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  54%|█████▎    | 73/136 [00:02<00:02, 26.88it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  57%|█████▋    | 77/136 [00:03<00:02, 29.13it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  60%|█████▉    | 81/136 [00:03<00:01, 31.04it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  63%|██████▎   | 86/136 [00:03<00:02, 20.28it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  65%|██████▌   | 89/136 [00:03<00:02, 21.18it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  68%|██████▊   | 92/136 [00:03<00:01, 22.84it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  70%|██████▉   | 95/136 [00:03<00:01, 23.62it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  73%|███████▎  | 99/136 [00:04<00:01, 25.49it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  75%|███████▌  | 102/136 [00:04<00:01, 26.11it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  77%|███████▋  | 105/136 [00:04<00:01, 25.32it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  80%|████████  | 109/136 [00:04<00:01, 26.72it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  82%|████████▏ | 112/136 [00:04<00:00, 27.17it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  85%|████████▍ | 115/136 [00:04<00:00, 27.14it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  88%|████████▊ | 119/136 [00:04<00:00, 27.95it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  90%|████████▉ | 122/136 [00:04<00:00, 28.47it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  92%|█████████▏| 125/136 [00:04<00:00, 28.68it/s]
+INFO:raganything.parser:[MinerU] Processing pages:  94%|█████████▍| 128/136 [00:25<00:15,  1.94s/it]2026-07-01 14:34:11.645 | INFO     | mineru.backend.hybrid.hybrid_analyze:aio_doc_analyze:1161 - Hybrid processing window 3/3: pages 129-136/136 (8 pages)
+INFO:raganything.parser:[MinerU] Layout Predict:   0%|          | 0/8 [00:00<?, ?it/s][A
+INFO:raganything.parser:[MinerU] Layout Predict: 100%|██████████| 8/8 [00:00<00:00, 13.09it/s][A
+INFO:raganything.parser:[MinerU] Layout Predict: 100%|██████████| 8/8 [00:00<00:00, 13.09it/s]
+INFO:raganything.parser:[MinerU] Table orientation det:   0%|          | 0/4 [00:00<?, ?it/s][A
+INFO:raganything.parser:[MinerU] Table orientation score: 100%|██████████| 4/4 [00:00<00:00, 50.57it/s][A
+INFO:raganything.parser:[MinerU] Table orientation score: 100%|██████████| 4/4 [00:00<00:00, 50.50it/s][A
+INFO:raganything.parser:[MinerU] Table orientation: 100%|██████████| 4/4 [00:00<00:00, 50.47it/s]      [A
+INFO:raganything.parser:[MinerU] Table orientation: 100%|██████████| 4/4 [00:00<00:00, 50.45it/s][A
+INFO:raganything.parser:[MinerU] Table orientation: 100%|██████████| 4/4 [00:00<00:00, 50.41it/s]
+INFO:raganything.parser:[MinerU] Predict:   0%|          | 0/4 [00:00<?, ?it/s][A
+INFO:raganything.parser:[MinerU] Predict: 100%|██████████| 4/4 [00:03<00:00,  1.02it/s][A
+INFO:raganything.parser:[MinerU] Predict: 100%|██████████| 4/4 [00:03<00:00,  1.02it/s]
+INFO:raganything.parser:[MinerU] OCR-det:   0%|          | 0/75 [00:00<?, ?it/s][A
+INFO:raganything.parser:[MinerU] OCR-det:   1%|▏         | 1/75 [00:00<00:11,  6.72it/s][A
+INFO:raganything.parser:[MinerU] OCR-det:   9%|▉         | 7/75 [00:20<03:23,  3.00s/it][A
+INFO:raganything.parser:[MinerU] OCR-det: 100%|██████████| 75/75 [00:00<00:00, 104.66it/s]
+INFO:raganything.parser:[MinerU] Processing pages: 100%|██████████| 136/136 [00:10<00:00, 12.40it/s]
+INFO:raganything.parser:[MinerU] OCR-rec Predict:   0%|          | 0/105 [00:00<?, ?it/s]
+INFO:raganything.parser:[MinerU] OCR-rec Predict:  40%|████      | 42/105 [00:00<00:00, 380.85it/s]
+INFO:raganything.parser:[MinerU] OCR-rec Predict:  91%|█████████▏| 96/105 [00:00<00:00, 445.75it/s]
+INFO:raganything.parser:[MinerU] OCR-rec Predict: 100%|██████████| 105/105 [00:00<00:00, 369.09it/s]
+INFO:raganything.parser:[MinerU] 2026-07-01 14:34:23.531 | INFO     | mineru.cli.client:run_planned_task:883 - Completed batch 1/1 | Processed 136/136 pages | 1 of 1 batch finished | task#1 [MANUAL LLAVOR 2025 CA]
+INFO:raganything.parser:[MinerU] INFO:     Shutting down
+INFO:raganything.parser:[MinerU] INFO:     Waiting for application shutdown.
+INFO:raganything.parser:[MinerU] INFO:     Application shutdown complete.
+INFO:raganything.parser:[MinerU] INFO:     Finished server process [695609]
+INFO:raganything.parser:[MinerU] Command executed successfully
+INFO:raganything.parser:Found MinerU output in subdirectory: hybrid_auto
+INFO:raganything.parser:Fixing image paths in output/MANUAL LLAVOR 2025 CA_db9a0417/MANUAL LLAVOR 2025 CA/hybrid_auto/MANUAL LLAVOR 2025 CA_content_list.json with base directory: output/MANUAL LLAVOR 2025 CA_db9a0417/MANUAL LLAVOR 2025 CA/hybrid_auto
+INFO: Parsing data/files/MANUAL LLAVOR 2025 CA.pdf complete! Extracted 1369 content blocks
+INFO: Stored parsing result in cache: b391503650cc862417acfe14e71c2db9
+INFO: 
+Content Information:
+INFO: * Total blocks in content_list: 1369
+INFO: * Content block types:
+INFO:   - image: 78
+INFO:   - text: 937
+INFO:   - page_number: 28
+INFO:   - header: 46
+INFO:   - table: 58
+INFO:   - footer: 222
+INFO: Content separation complete:
+INFO:   - Text content length: 121868 characters
+INFO:   - Multimodal items count: 432
+INFO:   - Multimodal type distribution: {'image': 78, 'page_number': 28, 'header': 46, 'table': 58, 'footer': 222}
+INFO: Setting content source for context-aware multimodal processing...
+INFO: Content source set with format: minerU
+INFO: Content source set with format: minerU
+INFO: Content source set with format: minerU
+INFO: Content source set with format: minerU
+INFO: Content source set for context extraction (format: minerU)
+INFO: Starting text content insertion into LightRAG...
+INFO: Processing 1 document(s)
+INFO: Extracting stage 1/1: MANUAL LLAVOR 2025 CA.pdf
+INFO: Processing d-id: doc-599ec8feac21f8676efd012cd2ae13e6
+INFO: Embedding func: 8 new workers initialized (Timeouts: Func: 30s, Worker: 60s, Health Check: 75s)
+ERROR: Traceback (most recent call last):
+  File "/home/pagusti/.local/share/virtualenvs/atlasqaxai-Zzs6rSTG/lib/python3.12/site-packages/lightrag/lightrag.py", line 2040, in process_document
+    await asyncio.gather(*first_stage_tasks)
+  File "/home/pagusti/.local/share/virtualenvs/atlasqaxai-Zzs6rSTG/lib/python3.12/site-packages/lightrag/kg/nano_vector_db_impl.py", line 126, in upsert
+    embeddings_list = await asyncio.gather(*embedding_tasks)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pagusti/.local/share/virtualenvs/atlasqaxai-Zzs6rSTG/lib/python3.12/site-packages/lightrag/utils.py", line 537, in __call__
+    total_elements = result.size  # Total number of elements in the numpy array
+                     ^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'size'
+
+ERROR: Failed to extract document 1/1: MANUAL LLAVOR 2025 CA.pdf
+INFO: Enqueued document processing pipeline stopped
+INFO: Text content insertion complete
+INFO: Starting multimodal content processing...
+INFO: Starting to process 432 multimodal content items
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing page_number analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+INFO: Multimodal chunk generation progress: 43/432 (10.0%)
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+INFO: Multimodal chunk generation progress: 86/432 (19.9%)
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing table analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing footer analysis response: Missing required fields in response
+INFO: Multimodal chunk generation progress: 129/432 (29.9%)
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing footer analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing footer analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing table analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing table analysis response: Missing required fields in response
+INFO: Multimodal chunk generation progress: 172/432 (39.8%)
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing table analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing footer analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+INFO: Multimodal chunk generation progress: 215/432 (49.8%)
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing table analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+INFO: Multimodal chunk generation progress: 258/432 (59.7%)
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing footer analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing table analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+INFO: Multimodal chunk generation progress: 301/432 (69.7%)
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing footer analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing footer analysis response: Missing required fields in response
+ERROR: Error parsing footer analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing footer analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing footer analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+INFO: Multimodal chunk generation progress: 344/432 (79.6%)
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing footer analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing footer analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing table analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+INFO: Multimodal chunk generation progress: 387/432 (89.6%)
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing footer analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing footer analysis response: Missing required fields in response
+ERROR: Error parsing table analysis response: Missing required fields in response
+ERROR: Error parsing footer analysis response: Missing required fields in response
+WARNING: Using regex fallback for JSON parsing
+INFO: Creating a new event loop in main thread.
+INFO: Executing text query: Como conservar pera conference...
+INFO: Query mode: hybrid
+INFO: LLM func: 4 new workers initialized (Timeouts: Func: 180s, Worker: 360s, Health Check: 375s)
+WARNING: Using regex fallback for JSON parsing
+INFO:  == LLM cache == saving: hybrid:keywords:d10b3132ebb47815abbd2fc67547471f
+WARNING: Failed to batch pre-compute embeddings: 'list' object has no attribute 'size'
+INFO: Query nodes: Pera (top_k:25, cosine:0.2)
+ERROR: Error parsing footer analysis response: Missing required fields in response
+ERROR: Query failed: 'list' object has no attribute 'size'
+INFO: Text query completed
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+INFO: Multimodal chunk generation progress: 430/432 (99.5%)
+WARNING: Using regex fallback for JSON parsing
+WARNING: Using regex fallback for JSON parsing
+INFO: Multimodal chunk generation progress: 432/432 (100.0%)
+INFO: Generated descriptions for 432/432 multimodal items using correct processors
+ERROR: Error storing chunks to storage: 'list' object has no attribute 'size'
+ERROR: Error in multimodal processing: 'list' object has no attribute 'size'
+WARNING: Falling back to individual multimodal processing
+INFO: Processing item 1/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 2/432: page_number content
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 3/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 4/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 5/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 6/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 7/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 8/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 9/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 10/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 11/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 12/432: image content
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 13/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 14/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 15/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 16/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 17/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 18/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 19/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 20/432: page_number content
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 21/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 22/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 23/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 24/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 25/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 26/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 27/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 28/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 29/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 30/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 31/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 32/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 33/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 34/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 35/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 36/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 37/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 38/432: image content
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 39/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 40/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 41/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 42/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 43/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 44/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 45/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 46/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 47/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 48/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 49/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 50/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 51/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 52/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 53/432: image content
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 54/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 55/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 56/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 57/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 58/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 59/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 60/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 61/432: page_number content
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 62/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 63/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 64/432: page_number content
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 65/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 66/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 67/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 68/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 69/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 70/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 71/432: page_number content
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 72/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 73/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 74/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 75/432: image content
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 76/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 77/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 78/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 79/432: page_number content
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 80/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 81/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 82/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 83/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 84/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 85/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 86/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 87/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 88/432: image content
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 89/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 90/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 91/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 92/432: image content
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 93/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 94/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 95/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 96/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 97/432: page_number content
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 98/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 99/432: page_number content
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 100/432: table content
+ERROR: Error parsing table analysis response: Missing required fields in response
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 101/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 102/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 103/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 104/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 105/432: page_number content
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 106/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 107/432: page_number content
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 108/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 109/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 110/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 111/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 112/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 113/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 114/432: header content
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 115/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 116/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 117/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 118/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 119/432: header content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing header content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 120/432: page_number content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing page_number content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 121/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 122/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 123/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 124/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 125/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 126/432: footer content
+ERROR: Error parsing footer analysis response: Missing required fields in response
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 127/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 128/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 129/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 130/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 131/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 132/432: table content
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 133/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 134/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 135/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 136/432: table content
+ERROR: Error parsing table analysis response: Missing required fields in response
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 137/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 138/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 139/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 140/432: image content
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 141/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 142/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 143/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 144/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 145/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 146/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 147/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 148/432: footer content
+ERROR: Error parsing footer analysis response: Missing required fields in response
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 149/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 150/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 151/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 152/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 153/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 154/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 155/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 156/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 157/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 158/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 159/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 160/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 161/432: table content
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 162/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 163/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 164/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 165/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 166/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 167/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 168/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 169/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 170/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 171/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 172/432: table content
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 173/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 174/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 175/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 176/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 177/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 178/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 179/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 180/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 181/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 182/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 183/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 184/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 185/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 186/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 187/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 188/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 189/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 190/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 191/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 192/432: footer content
+ERROR: Error parsing footer analysis response: Missing required fields in response
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 193/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 194/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 195/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 196/432: footer content
+ERROR: Error parsing footer analysis response: Missing required fields in response
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 197/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 198/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 199/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 200/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 201/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 202/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 203/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 204/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 205/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 206/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 207/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 208/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 209/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 210/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 211/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 212/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 213/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 214/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 215/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 216/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 217/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 218/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 219/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 220/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 221/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 222/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 223/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 224/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 225/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 226/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 227/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 228/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 229/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 230/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 231/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 232/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 233/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 234/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 235/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 236/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 237/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 238/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 239/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 240/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 241/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 242/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 243/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 244/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 245/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 246/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 247/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 248/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 249/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 250/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 251/432: table content
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 252/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 253/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 254/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 255/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 256/432: table content
+ERROR: Error parsing table analysis response: Missing required fields in response
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 257/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 258/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 259/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 260/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 261/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 262/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 263/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 264/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 265/432: footer content
+ERROR: Error parsing footer analysis response: Missing required fields in response
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 266/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 267/432: table content
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 268/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 269/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 270/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 271/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 272/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 273/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 274/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 275/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 276/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 277/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 278/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 279/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 280/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 281/432: table content
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 282/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing table analysis response: Missing required fields in response
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 283/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 284/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 285/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 286/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 287/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 288/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 289/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 290/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 291/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 292/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing image analysis response: Missing required fields in response
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 293/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error parsing table analysis response: Missing required fields in response
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 294/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 295/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 296/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 297/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 298/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 299/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 300/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 301/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 302/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 303/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 304/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 305/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 306/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 307/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 308/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 309/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 310/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 311/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 312/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 313/432: footer content
+ERROR: Error parsing footer analysis response: Missing required fields in response
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 314/432: table content
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 315/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 316/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 317/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 318/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 319/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 320/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 321/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 322/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 323/432: table content
+ERROR: Error parsing table analysis response: Missing required fields in response
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 324/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 325/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 326/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 327/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 328/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 329/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 330/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 331/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 332/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 333/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 334/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 335/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 336/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 337/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 338/432: footer content
+ERROR: Error parsing footer analysis response: Missing required fields in response
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 339/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 340/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 341/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 342/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 343/432: table content
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 344/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 345/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 346/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 347/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 348/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 349/432: image content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 350/432: table content
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 351/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 352/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 353/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 354/432: table content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing table content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 355/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 356/432: footer content
+ERROR: Error parsing footer analysis response: Missing required fields in response
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 357/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 358/432: image content
+ERROR: Error processing image content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 359/432: footer content
+WARNING: Using regex fallback for JSON parsing
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 360/432: footer content
+ERROR: Error processing footer content: 'list' object has no attribute 'size'
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 361/432: footer content
+ERROR: Error generating footer description: Server disconnected
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.466989944: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 362/432: table content
+ERROR: Error generating table description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.473148525: [Errno 104] Connection reset by peer
+ERROR: Error processing table content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 363/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.479051489: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 364/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.484172493: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 365/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.488967314: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 366/432: table content
+ERROR: Error generating table description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.493978031: Server disconnected
+ERROR: Error processing table content: Server disconnected
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 367/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.498158601: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 368/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.501792798: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 369/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.505144484: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 370/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.509081537: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 371/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.512987866: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 372/432: image content
+ERROR: Error generating image description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.517218722: [Errno 104] Connection reset by peer
+ERROR: Error processing image content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 373/432: table content
+ERROR: Error generating table description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.520548598: [Errno 104] Connection reset by peer
+ERROR: Error processing table content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 374/432: header content
+ERROR: Error generating header description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.523686131: [Errno 104] Connection reset by peer
+ERROR: Error processing header content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 375/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.527349883: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 376/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.53006515: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 377/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.533341561: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 378/432: table content
+ERROR: Error generating table description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.536438984: [Errno 104] Connection reset by peer
+ERROR: Error processing table content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 379/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.539342878: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 380/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.542587544: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 381/432: image content
+ERROR: Error generating image description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.547094267: [Errno 104] Connection reset by peer
+ERROR: Error processing image content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 382/432: image content
+ERROR: Error generating image description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.550715753: [Errno 104] Connection reset by peer
+ERROR: Error processing image content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 383/432: header content
+ERROR: Error generating header description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.553609961: [Errno 104] Connection reset by peer
+ERROR: Error processing header content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 384/432: header content
+ERROR: Error generating header description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.55661846: [Errno 104] Connection reset by peer
+ERROR: Error processing header content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 385/432: image content
+ERROR: Error generating image description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.560639729: [Errno 104] Connection reset by peer
+ERROR: Error processing image content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 386/432: table content
+ERROR: Error generating table description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.564388504: [Errno 104] Connection reset by peer
+ERROR: Error processing table content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 387/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.567473261: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 388/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.570779497: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 389/432: table content
+ERROR: Error generating table description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.574038398: [Errno 104] Connection reset by peer
+ERROR: Error processing table content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 390/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.577902898: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 391/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.581121705: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 392/432: image content
+ERROR: Error generating image description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.584537421: [Errno 104] Connection reset by peer
+ERROR: Error processing image content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 393/432: table content
+ERROR: Error generating table description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.587666767: Server disconnected
+ERROR: Error processing table content: Server disconnected
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 394/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.595100116: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 395/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.599308644: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 396/432: table content
+ERROR: Error generating table description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.602773741: [Errno 104] Connection reset by peer
+ERROR: Error processing table content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 397/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.605828854: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 398/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.609574146: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 399/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.613567773: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 400/432: image content
+ERROR: Error generating image description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.617433859: [Errno 104] Connection reset by peer
+ERROR: Error processing image content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 401/432: table content
+ERROR: Error generating table description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.620901196: [Errno 104] Connection reset by peer
+ERROR: Error processing table content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 402/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.624673103: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 403/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.627931087: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 404/432: table content
+ERROR: Error generating table description: Server disconnected
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.631626498: [Errno 104] Connection reset by peer
+ERROR: Error processing table content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 405/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.634886709: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 406/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.638223156: Server disconnected
+ERROR: Error processing footer content: Server disconnected
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 407/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.642304491: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 408/432: image content
+ERROR: Error generating image description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.646432141: [Errno 104] Connection reset by peer
+ERROR: Error processing image content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 409/432: table content
+ERROR: Error generating table description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.650033147: [Errno 104] Connection reset by peer
+ERROR: Error processing table content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 410/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.653632107: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 411/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.656818588: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 412/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.660356776: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 413/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.6637117: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 414/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.666909482: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 415/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.670141976: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 416/432: image content
+ERROR: Error generating image description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.673625219: [Errno 104] Connection reset by peer
+ERROR: Error processing image content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 417/432: table content
+ERROR: Error generating table description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.676952545: [Errno 104] Connection reset by peer
+ERROR: Error processing table content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 418/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.679962711: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 419/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.68308582: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 420/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.686356069: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 421/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.689430639: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 422/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.692561487: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 423/432: image content
+ERROR: Error generating image description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.695976458: [Errno 104] Connection reset by peer
+ERROR: Error processing image content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 424/432: table content
+ERROR: Error generating table description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.699451108: [Errno 104] Connection reset by peer
+ERROR: Error processing table content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 425/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.702584188: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 426/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.705368142: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 427/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.708107246: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 428/432: table content
+ERROR: Error generating table description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.711115625: [Errno 104] Connection reset by peer
+ERROR: Error processing table content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 429/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.714077185: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 430/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.716825485: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 431/432: footer content
+ERROR: Error generating footer description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.719343188: [Errno 104] Connection reset by peer
+ERROR: Error processing footer content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Processing item 432/432: page_number content
+ERROR: Error generating page_number description: [Errno 104] Connection reset by peer
+ERROR: Embedding func: Error in decorated function for task 132392139894656_361233.72202903: [Errno 104] Connection reset by peer
+ERROR: Error processing page_number content: [Errno 104] Connection reset by peer
+ERROR: Error processing multimodal content: not enough values to unpack (expected 3, got 2)
+INFO: Individual multimodal content processing complete
+INFO: Document data/files/MANUAL LLAVOR 2025 CA.pdf processing complete!
+INFO: Processing complete!
+INFO:   Successful: 1 files
+INFO:   Failed: 0 files
+INFO: Successfully finalized 12 storages
+INFO: Successfully finalized all RAGAnything storages
